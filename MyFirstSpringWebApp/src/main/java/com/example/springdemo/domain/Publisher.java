@@ -1,10 +1,9 @@
-package domain;
+package com.example.springdemo.domain;
 
 import java.util.*;
 import javax.persistence.*;
 
-import org.springframework.data.annotation.Id;
-
+@Entity
 public class Publisher {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO )
