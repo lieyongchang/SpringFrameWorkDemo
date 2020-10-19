@@ -1,10 +1,12 @@
-package bootstrap;
+package com.example.springdemo.bootstrap;
 
+import com.example.springdemo.repository.AuthorRepository;
+import com.example.springdemo.repository.BookRepository;
+import com.example.springdemo.repository.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import domain.*;
-import repository.*;
+import com.example.springdemo.domain.*;
 
 @Component
 public class BootStrapData implements CommandLineRunner {
@@ -41,11 +43,13 @@ public class BootStrapData implements CommandLineRunner {
 		
 		topSeller.setPublisher(publisher);
 		publisher.getBooks().add(topSeller);
-		
-		authorRepo.save(dan);
-		bookRepo.save(topSeller);
-		publisherRepo.save(publisher);
-		
+
+//		publisher = publisherRepo.save(publisher);
+
+//		dan = authorRepo.save(dan);
+
+//		topSeller = bookRepo.save(topSeller);
+
 		
 		System.out.print("count: " + bookRepo.count());
 		System.out.print("count: " + publisher.getBooks().size());

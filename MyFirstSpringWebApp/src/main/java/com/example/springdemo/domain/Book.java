@@ -1,12 +1,11 @@
-package domain;
+package com.example.springdemo.domain;
 
 import javax.persistence.*;
-import org.springframework.data.annotation.Id;
-
 import java.util.*;
 
 @Entity
 public class Book {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO )
 	private Long id;
