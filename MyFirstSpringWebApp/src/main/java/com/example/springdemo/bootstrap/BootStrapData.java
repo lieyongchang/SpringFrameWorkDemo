@@ -24,17 +24,21 @@ public class BootStrapData implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		Author dan = new Author("Dan", "Brown");
-		Book topSeller = new Book("AngelsAndDemons","12312312");
-		Publisher publisher = new Publisher();
 		
+		// TODO Auto-generated method stub
+		
+		
+		Publisher publisher = new Publisher();
 		publisher.setName("yongchang");
 		publisher.setAddress("BoonLay");
 		publisher.setCity("Singapore");
 		publisher.setState("Singapore");
 		publisher.setZip("640185");
 		
+		publisher = publisherRepo.save(publisher);
+		
+		Author dan = new Author("Dan", "Brown");
+		Book topSeller = new Book("AngelsAndDemons","12312312");
 		
 		dan.getBooks().add(topSeller);
 		topSeller.getAuthors().add(dan);
@@ -42,10 +46,10 @@ public class BootStrapData implements CommandLineRunner {
 		topSeller.setPublisher(publisher);
 		publisher.getBooks().add(topSeller);
 
-//		publisher = publisherRepo.save(publisher);
-//		dan = authorRepo.save(dan);
-//		topSeller = bookRepo.save(topSeller);
-
+		
+		authorRepo.save(dan);
+		bookRepo.save(topSeller);
+		publisherRepo.save(publisher);
 		
 		System.out.println("count: " + bookRepo.count());
 		System.out.println("count: " + publisher.getBooks().size());
