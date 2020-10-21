@@ -1,2 +1,2 @@
 # SpringFrameWorkDemo
-This repo will have all the demo for my learning of spring framework
+This Branch is about creating a Pet Clinic App using spring framework
