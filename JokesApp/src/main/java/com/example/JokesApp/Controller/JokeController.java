@@ -21,7 +21,7 @@ public class JokeController {
 	public String DisplayJokes(Model model) {
 		model.addAttribute("joke", jokeService.getJokes());
 
-		return "chuckNorris";
+		return "chucknorris";
 	}
 
 }
