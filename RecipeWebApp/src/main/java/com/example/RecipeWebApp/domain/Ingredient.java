@@ -1,4 +1,4 @@
-package domain;
+package com.example.RecipeWebApp.domain;
 
 import java.math.BigDecimal;
 

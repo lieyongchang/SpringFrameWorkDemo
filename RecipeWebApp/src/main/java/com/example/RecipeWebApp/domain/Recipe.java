@@ -1,4 +1,4 @@
-package domain;
+package com.example.RecipeWebApp.domain;
 
 import java.util.Set;
 
@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -51,6 +52,9 @@ public class Recipe {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Notes notes;
+
+	@ManyToMany
+	private Set<Category> categories;
 
 	public String getDescription() {
 		return description;
@@ -146,6 +150,14 @@ public class Recipe {
 
 	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
+	}
+
+	public Set<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Set<Category> categories) {
+		this.categories = categories;
 	}
 
 }
