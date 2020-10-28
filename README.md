@@ -1,2 +1,2 @@
 # SpringFrameWorkDemo
-This repo will have all the demo for my learning of spring framework
+This branch is about using various tools to test Spring Framework Applications
