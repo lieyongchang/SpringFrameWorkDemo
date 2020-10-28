@@ -1,10 +1,20 @@
 package com.example.RecipeWebApp.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.RecipeWebApp.Service.IRecipeService;
 
 @Controller
 public class IndexController {
+
+	private final IRecipeService recipeService;
+
+	public IndexController(IRecipeService recipeService) {
+		super();
+		this.recipeService = recipeService;
+	}
 
 	/*
 	 * 
@@ -21,10 +31,10 @@ public class IndexController {
 	// this.uomRepo = uomRepo;
 	// }
 
-//	@RequestMapping(value = "/")
+	// @RequestMapping(value = "/")
 	@RequestMapping({ "", "/", "/index" })
-	public String getIndexPage() {
-
+	public String getIndexPage(Model model) {
+		model.addAttribute("recipes", recipeService.getRecipe());
 		/*
 		 * 
 		 * Uncomment this to see JPA Query in action

@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
+
 import com.example.RecipeWebApp.domain.Category;
 import com.example.RecipeWebApp.domain.Difficulty;
 import com.example.RecipeWebApp.domain.Ingredient;
@@ -15,7 +19,8 @@ import com.example.RecipeWebApp.repositories.CategoryRepository;
 import com.example.RecipeWebApp.repositories.RecipeRepository;
 import com.example.RecipeWebApp.repositories.UnitOfMeasureRepository;
 
-public class RecipeBootstrap {
+@Component
+public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
 	private final CategoryRepository categoryRepo;
 	private final RecipeRepository recipeRepo;
@@ -28,9 +33,15 @@ public class RecipeBootstrap {
 		this.uomRepo = uomRepo;
 	}
 
+	@Override
+	public void onApplicationEvent(ContextRefreshedEvent event) {
+		recipeRepo.saveAll(getRecipes());
+	}
+
 	/*
 	 * Method to retrieve recipes
 	 */
+
 	private List<Recipe> getRecipes() {
 
 		// container to store all the recipes
@@ -45,20 +56,37 @@ public class RecipeBootstrap {
 		// 1) go into unit of measure repository
 		// 2) Retrieve the the specific data by description
 		Optional<UnitOfMeasure> eachUom = uomRepo.findByDescription("Each");
+		if (!eachUom.isPresent()) {
+			throw new RuntimeException("Expected UOM Not Found");
+		}
 		Optional<UnitOfMeasure> tableSpoonUom = uomRepo.findByDescription("Tablespoon");
+		if (!tableSpoonUom.isPresent()) {
+			throw new RuntimeException("Expected UOM Not Found");
+		}
 		Optional<UnitOfMeasure> teaSpoonUom = uomRepo.findByDescription("Teaspoon");
+		if (!teaSpoonUom.isPresent()) {
+			throw new RuntimeException("Expected UOM Not Found");
+		}
 		Optional<UnitOfMeasure> dashUom = uomRepo.findByDescription("Dash");
+		if (!dashUom.isPresent()) {
+			throw new RuntimeException("Expected UOM Not Found");
+		}
 		Optional<UnitOfMeasure> pintUom = uomRepo.findByDescription("Pint");
+		if (!pintUom.isPresent()) {
+			throw new RuntimeException("Expected UOM Not Found");
+		}
 		Optional<UnitOfMeasure> cupsUom = uomRepo.findByDescription("Cup");
-
+		if (!cupsUom.isPresent()) {
+			throw new RuntimeException("Expected UOM Not Found");
+		}
 		// after get the correct data
 		// store it in a variable
 		UnitOfMeasure each = eachUom.get();
 		UnitOfMeasure tableSpoon = tableSpoonUom.get();
 		UnitOfMeasure teaSpoon = teaSpoonUom.get();
 		UnitOfMeasure dash = dashUom.get();
-		UnitOfMeasure pint = pintUom.get();
-		UnitOfMeasure cups = cupsUom.get();
+//		UnitOfMeasure pint = pintUom.get();
+//		UnitOfMeasure cups = cupsUom.get();
 
 		/*
 		 * 
@@ -68,16 +96,17 @@ public class RecipeBootstrap {
 		// 1) go into unit of measure repository
 		// 2) Retrieve the the specific data by description
 		Optional<Category> americanCat = categoryRepo.findByDescription("American");
-		Optional<Category> italyCat = categoryRepo.findByDescription("Italian");
+		if (!americanCat.isPresent()) {
+			throw new RuntimeException("Expected Category Not Found");
+		}
 		Optional<Category> mexicanCat = categoryRepo.findByDescription("Mexican");
-		Optional<Category> fastfoodCat = categoryRepo.findByDescription("Fast Food");
-
+		if (!mexicanCat.isPresent()) {
+			throw new RuntimeException("Expected Category Not Found");
+		}
 		// after get the correct data
 		// store it in a variable
 		Category americanCategory = americanCat.get();
-		Category itayCategory = italyCat.get();
 		Category mexicanCategory = mexicanCat.get();
-		Category fastfoodCategoy = fastfoodCat.get();
 
 		/*
 		 * 
@@ -129,7 +158,6 @@ public class RecipeBootstrap {
 				.add(new Ingredient("freshly grated black pepper", new BigDecimal(2), dash, guacRecipe));
 		guacRecipe.getIngredients().add(
 				new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(".5"), each, guacRecipe));
-
 		guacRecipe.getCategories().add(americanCategory);
 		guacRecipe.getCategories().add(mexicanCategory);
 
@@ -139,4 +167,5 @@ public class RecipeBootstrap {
 		return recipe;
 
 	}
+
 }

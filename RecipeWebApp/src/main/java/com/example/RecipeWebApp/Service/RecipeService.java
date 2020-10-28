@@ -3,9 +3,12 @@ package com.example.RecipeWebApp.Service;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
 import com.example.RecipeWebApp.domain.Recipe;
 import com.example.RecipeWebApp.repositories.RecipeRepository;
 
+@Service
 public class RecipeService implements IRecipeService {
 
 	private RecipeRepository recipeRepo;
