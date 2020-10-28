@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import lombok.extern.slf4j.Slf4j;
+import javax.transaction.Transactional;
+
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -20,11 +21,10 @@ import com.example.RecipeWebApp.repositories.CategoryRepository;
 import com.example.RecipeWebApp.repositories.RecipeRepository;
 import com.example.RecipeWebApp.repositories.UnitOfMeasureRepository;
 
-import javax.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
 // create logger file
 @Slf4j
-
 // just saying this file is a component
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
@@ -151,7 +151,6 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 						+ "To extend a limited supply of avocados, add either sour cream or cottage cheese to your guacamole dip. Purists may be horrified, but so what? It tastes great.\n"
 						+ "\n" + "\n"
 						+ "Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvoun5ws");
-		guacNotes.setRecipe(guacRecipe);
 		guacRecipe.setNotes(guacNotes);
 
 		guacRecipe.getIngredients().add(new Ingredient("ripe avocados", new BigDecimal(2), each));

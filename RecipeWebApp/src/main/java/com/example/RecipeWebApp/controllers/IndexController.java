@@ -1,11 +1,13 @@
 package com.example.RecipeWebApp.controllers;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.RecipeWebApp.Service.IRecipeService;
+
+import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 @Controller
 public class IndexController {
@@ -13,7 +15,6 @@ public class IndexController {
 	private final IRecipeService recipeService;
 
 	public IndexController(IRecipeService recipeService) {
-		log.debug("this is index page");
 		this.recipeService = recipeService;
 	}
 
@@ -35,6 +36,7 @@ public class IndexController {
 	// @RequestMapping(value = "/")
 	@RequestMapping({ "", "/", "/index" })
 	public String getIndexPage(Model model) {
+		log.debug("Getting Index Page");
 		model.addAttribute("recipes", recipeService.getRecipe());
 		/*
 		 * 

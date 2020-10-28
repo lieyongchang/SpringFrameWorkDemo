@@ -1,7 +1,5 @@
 package com.example.RecipeWebApp.domain;
 
-import lombok.*;
-
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -10,10 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-@Data
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-//
-@EqualsAndHashCode(exclude = "recipes")
+@Data
+@EqualsAndHashCode(exclude = { "recipes" })
 @Entity
 public class Category {
 

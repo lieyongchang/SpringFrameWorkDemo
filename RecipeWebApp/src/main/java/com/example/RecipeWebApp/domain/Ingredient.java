@@ -1,8 +1,5 @@
 package com.example.RecipeWebApp.domain;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
@@ -12,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(exclude = "recipe")
@@ -27,6 +27,9 @@ public class Ingredient {
 	@OneToOne(fetch = FetchType.EAGER)
 	private UnitOfMeasure uom;
 
+	@ManyToOne
+	private Recipe recipe;
+
 	public Ingredient() {
 	}
 
@@ -36,6 +39,11 @@ public class Ingredient {
 		this.uom = uom;
 	}
 
-	@ManyToOne
-	private Recipe recipe;
+	public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom, Recipe recipe) {
+		this.description = description;
+		this.amount = amount;
+		this.uom = uom;
+		this.recipe = recipe;
+	}
+
 }
