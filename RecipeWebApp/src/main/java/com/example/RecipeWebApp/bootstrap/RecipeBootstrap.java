@@ -145,19 +145,18 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		guacNotes.setRecipe(guacRecipe);
 		guacRecipe.setNotes(guacNotes);
 
-		guacRecipe.getIngredients().add(new Ingredient("ripe avocados", new BigDecimal(2), each, guacRecipe));
-		guacRecipe.getIngredients().add(new Ingredient("Kosher salt", new BigDecimal(".5"), teaSpoon, guacRecipe));
+		guacRecipe.getIngredients().add(new Ingredient("ripe avocados", new BigDecimal(2), each));
+		guacRecipe.getIngredients().add(new Ingredient("Kosher salt", new BigDecimal(".5"), teaSpoon));
 		guacRecipe.getIngredients()
-				.add(new Ingredient("fresh lime juice or lemon juice", new BigDecimal(2), tableSpoon, guacRecipe));
-		guacRecipe.getIngredients().add(new Ingredient("minced red onion or thinly sliced green onion",
-				new BigDecimal(2), tableSpoon, guacRecipe));
-		guacRecipe.getIngredients().add(
-				new Ingredient("serrano chiles, stems and seeds removed, minced", new BigDecimal(2), each, guacRecipe));
-		guacRecipe.getIngredients().add(new Ingredient("Cilantro", new BigDecimal(2), tableSpoon, guacRecipe));
+				.add(new Ingredient("fresh lime juice or lemon juice", new BigDecimal(2), tableSpoon));
 		guacRecipe.getIngredients()
-				.add(new Ingredient("freshly grated black pepper", new BigDecimal(2), dash, guacRecipe));
-		guacRecipe.getIngredients().add(
-				new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(".5"), each, guacRecipe));
+				.add(new Ingredient("minced red onion or thinly sliced green onion", new BigDecimal(2), tableSpoon));
+		guacRecipe.getIngredients()
+				.add(new Ingredient("serrano chiles, stems and seeds removed, minced", new BigDecimal(2), each));
+		guacRecipe.getIngredients().add(new Ingredient("Cilantro", new BigDecimal(2), tableSpoon));
+		guacRecipe.getIngredients().add(new Ingredient("freshly grated black pepper", new BigDecimal(2), dash));
+		guacRecipe.getIngredients()
+				.add(new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(".5"), each));
 		guacRecipe.getCategories().add(americanCategory);
 		guacRecipe.getCategories().add(mexicanCategory);
 
