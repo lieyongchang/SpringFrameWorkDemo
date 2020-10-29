@@ -165,6 +165,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		guacRecipe.getIngredients().add(new Ingredient("freshly grated black pepper", new BigDecimal(2), dash));
 		guacRecipe.getIngredients()
 				.add(new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(".5"), each));
+
 		guacRecipe.getCategories().add(americanCategory);
 		guacRecipe.getCategories().add(mexicanCategory);
 

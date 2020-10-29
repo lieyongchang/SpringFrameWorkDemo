@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class RecipeService implements IRecipeService {
 
-	private RecipeRepository recipeRepo;
+	private final RecipeRepository recipeRepo;
 
 	public RecipeService(RecipeRepository recipeRepo) {
 		this.recipeRepo = recipeRepo;
@@ -26,6 +26,7 @@ public class RecipeService implements IRecipeService {
 	@Override
 	public Set<Recipe> getRecipe() {
 		log.debug("I'm in the service");
+
 		// recipeSet is just a container
 		Set<Recipe> recipeSet = new HashSet<>();
 

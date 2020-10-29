@@ -7,6 +7,7 @@ import org.junit.Test;
 
 public class CategoryTest {
 
+	// this is a example of Junit test
 	Category category;
 
 	@Before
