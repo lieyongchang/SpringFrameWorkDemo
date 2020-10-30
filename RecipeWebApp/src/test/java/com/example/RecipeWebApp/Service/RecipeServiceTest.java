@@ -37,7 +37,6 @@ public class RecipeServiceTest {
 
 		Recipe recipe = new Recipe();
 		HashSet recipesData = new HashSet();
-		System.out.println("yc: " + recipeService);
 		recipesData.add(recipe);
 		when(recipeRepository.findAll()).thenReturn(recipesData);
 
