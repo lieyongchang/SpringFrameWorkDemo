@@ -69,6 +69,10 @@
 			<artifactId>jquery</artifactId>
 			<version>1.11.1</version>
 		</dependency>
+		<dependency>
+		  <groupId>javax.servlet</groupId>
+		  <artifactId>jstl</artifactId>
+		</dependency>
     </dependencies>
 
 	<build>
