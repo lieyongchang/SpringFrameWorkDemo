@@ -60,4 +60,9 @@ public class Recipe {
 		this.ingredients.add(ingredient);
 		return this;
 	}
+
+	protected boolean canEqual(final Object other) {
+		return other instanceof Recipe;
+	}
+
 }

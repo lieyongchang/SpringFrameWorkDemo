@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.example.RecipeWebApp.converters.RecipeCommandToRecipe;
+import com.example.RecipeWebApp.converters.RecipeToRecipeCommand;
 import com.example.RecipeWebApp.domain.Recipe;
 import com.example.RecipeWebApp.repositories.RecipeRepository;
 
@@ -25,11 +27,17 @@ public class RecipeServiceTest {
 	@Mock
 	RecipeRepository recipeRepository;
 
+	@Mock
+	RecipeToRecipeCommand recipeToRecipeCommand;
+
+	@Mock
+	RecipeCommandToRecipe recipeCommandToRecipe;
+
 	@BeforeEach
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 
-		recipeService = new RecipeService(recipeRepository);
+		recipeService = new RecipeService(recipeRepository, recipeToRecipeCommand, recipeCommandToRecipe);
 	}
 
 	@Test
@@ -38,8 +46,8 @@ public class RecipeServiceTest {
 		Recipe recipe = new Recipe();
 		HashSet recipesData = new HashSet();
 		recipesData.add(recipe);
-		when(recipeRepository.findAll()).thenReturn(recipesData);
-
+		// when(recipeRepository.findAll()).thenReturn(recipesData);
+		when(recipeService.getRecipe()).thenReturn(recipesData);
 		Set<Recipe> recipes = recipeService.getRecipe();
 
 		assertEquals(recipes.size(), 1);
