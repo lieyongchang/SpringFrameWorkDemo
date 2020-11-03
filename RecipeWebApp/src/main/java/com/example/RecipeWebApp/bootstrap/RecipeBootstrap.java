@@ -124,7 +124,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		 */
 
 		Recipe guacRecipe = new Recipe();
-		guacRecipe.setDescription("Must try it with Tacos");
+		guacRecipe.setDescription("Perfect Guacamole");
 		guacRecipe.setPrepTime(10);
 		guacRecipe.setCookTime(0);
 		guacRecipe.setDifficulty(Difficulty.EASY);
@@ -153,24 +153,24 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 						+ "Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvoun5ws");
 		guacRecipe.setNotes(guacNotes);
 
-		guacRecipe.getIngredients().add(new Ingredient("ripe avocados", new BigDecimal(2), each));
-		guacRecipe.getIngredients().add(new Ingredient("Kosher salt", new BigDecimal(".5"), teaSpoon));
-		guacRecipe.getIngredients()
-				.add(new Ingredient("fresh lime juice or lemon juice", new BigDecimal(2), tableSpoon));
-		guacRecipe.getIngredients()
-				.add(new Ingredient("minced red onion or thinly sliced green onion", new BigDecimal(2), tableSpoon));
-		guacRecipe.getIngredients()
-				.add(new Ingredient("serrano chiles, stems and seeds removed, minced", new BigDecimal(2), each));
-		guacRecipe.getIngredients().add(new Ingredient("Cilantro", new BigDecimal(2), tableSpoon));
-		guacRecipe.getIngredients().add(new Ingredient("freshly grated black pepper", new BigDecimal(2), dash));
-		guacRecipe.getIngredients()
-				.add(new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(".5"), each));
+		guacRecipe.addIngredient(new Ingredient("ripe avocados", new BigDecimal(2), each));
+		guacRecipe.addIngredient(new Ingredient("Kosher salt", new BigDecimal(".5"), teaSpoon));
+		guacRecipe.addIngredient(new Ingredient("fresh lime juice or lemon juice", new BigDecimal(2), tableSpoon));
+		guacRecipe.addIngredient(
+				new Ingredient("minced red onion or thinly sliced green onion", new BigDecimal(2), tableSpoon));
+		guacRecipe.addIngredient(
+				new Ingredient("serrano chiles, stems and seeds removed, minced", new BigDecimal(2), each));
+		guacRecipe.addIngredient(new Ingredient("Cilantro", new BigDecimal(2), tableSpoon));
+		guacRecipe.addIngredient(new Ingredient("freshly grated black pepper", new BigDecimal(2), dash));
+		guacRecipe.addIngredient(
+				new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(".5"), each));
 
 		guacRecipe.getCategories().add(americanCategory);
 		guacRecipe.getCategories().add(mexicanCategory);
 		guacRecipe.setSource("http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvoun5ws");
 		guacRecipe.setUrl("http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvoun5ws");
-
+		guacRecipe.setServing(4);
+		guacRecipe.setSource("Simply Recipes");
 		// add to return list
 		recipe.add(guacRecipe);
 
@@ -226,6 +226,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		tacosRecipe.getCategories().add(americanCategory);
 		tacosRecipe.getCategories().add(mexicanCategory);
 		tacosRecipe.setUrl("http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/#ixzz4jvu7Q0MJ");
+		tacosRecipe.setServing(4);
 		tacosRecipe.setSource("http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/#ixzz4jvu7Q0MJ");
 
 		recipe.add(tacosRecipe);
