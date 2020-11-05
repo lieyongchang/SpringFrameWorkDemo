@@ -24,9 +24,10 @@ public class ImageService implements IimageService {
 	@Override
 	@Transactional
 	public void saveImageFile(Long recipeId, MultipartFile file) {
+
 		try {
 			Recipe recipe = recipeRepo.findById(recipeId).get();
-
+			log.debug("No error");
 			Byte[] byteObjects = new Byte[file.getBytes().length];
 
 			int i = 0;

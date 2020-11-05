@@ -36,7 +36,6 @@ public class RecipeService implements IRecipeService {
 	@Override
 	public Set<Recipe> getRecipe() {
 		log.debug("I'm in the service");
-
 		// recipeSet is just a container
 		Set<Recipe> recipeSet = new HashSet<>();
 

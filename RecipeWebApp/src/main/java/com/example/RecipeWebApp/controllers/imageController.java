@@ -32,7 +32,7 @@ public class imageController {
 	@GetMapping("recipe/{id}/image")
 	public String showUploadForm(@PathVariable String id, Model model) {
 		model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
-
+		System.out.println("showUploadForm");
 		return "recipe/imageuploadform";
 	}
 
@@ -40,7 +40,7 @@ public class imageController {
 	public String handleImagePost(@PathVariable String id, @RequestParam("imagefile") MultipartFile file) {
 
 		imgService.saveImageFile(Long.valueOf(id), file);
-
+		System.out.println("handleImagePost");
 		return "redirect:/recipe/" + id + "/show";
 	}
 
@@ -59,6 +59,10 @@ public class imageController {
 			response.setContentType("image/jpeg");
 			InputStream is = new ByteArrayInputStream(byteArray);
 			IOUtils.copy(is, response.getOutputStream());
+		}
+
+		if (recipeCommand.getImage() == null) {
+			System.out.println("kosong");
 		}
 	}
 }
