@@ -6,6 +6,8 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.RecipeWebApp.commands.RecipeCommand;
 import com.example.RecipeWebApp.converters.RecipeCommandToRecipe;
@@ -51,7 +53,7 @@ public class RecipeService implements IRecipeService {
 		Optional<Recipe> recipeOptional = recipeRepo.findById(l);
 
 		if (!recipeOptional.isPresent()) {
-			throw new NotFoundException("Recipe Not Found");
+			throw new NotFoundException("Recipe Not Found " + l.toString());
 		}
 
 		return recipeOptional.get();
@@ -76,6 +78,17 @@ public class RecipeService implements IRecipeService {
 	@Override
 	public void deleteById(Long idToDelete) {
 		recipeRepo.deleteById(idToDelete);
+	}
+
+	@ExceptionHandler(NotFoundException.class)
+	public ModelAndView handleNotFound() {
+		log.debug("handling not found exception");
+
+		ModelAndView modelAndView = new ModelAndView();
+
+		modelAndView.setViewName("404error");
+
+		return modelAndView;
 	}
 
 }
