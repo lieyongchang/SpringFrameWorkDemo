@@ -1,2 +1,2 @@
 # SpringFrameWorkDemo
-This repo will have all the demo for my learning of spring framework
+This repo is a reactive demo using spring framework
