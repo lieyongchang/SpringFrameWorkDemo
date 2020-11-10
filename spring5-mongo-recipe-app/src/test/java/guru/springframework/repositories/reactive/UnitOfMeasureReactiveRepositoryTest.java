@@ -17,11 +17,11 @@ public class UnitOfMeasureReactiveRepositoryTest {
     public static final String EACH = "Each";
 
     @Autowired
-    UnitOfMeasureRepository uomRepo;
+    UnitOfMeasureReactiveRepository unitOfMeasureReactiveRepository;
 
     @Before
     public void setUp() throws Exception {
-    uomRepo.deleteAll();
+        unitOfMeasureReactiveRepository.deleteAll().block();
     }
 
     @Test
@@ -29,9 +29,9 @@ public class UnitOfMeasureReactiveRepositoryTest {
         UnitOfMeasure uom = new UnitOfMeasure();
         uom.setDescription(EACH);
 
-        uomRepo.save(uom);
+        unitOfMeasureReactiveRepository.save(uom).block();
 
-        Long count = uomRepo.count();
+        Long count = unitOfMeasureReactiveRepository.count().block();
 
         assertEquals(Long.valueOf(1L), count);
 
@@ -42,9 +42,9 @@ public class UnitOfMeasureReactiveRepositoryTest {
         UnitOfMeasure uom = new UnitOfMeasure();
         uom.setDescription(EACH);
 
-        uomRepo.save(uom);
+        unitOfMeasureReactiveRepository.save(uom).block();
 
-        UnitOfMeasure fetchedUOM = uomRepo.findByDescription(EACH).get();
+        UnitOfMeasure fetchedUOM = unitOfMeasureReactiveRepository.findByDescription(EACH).block();
 
         assertEquals(EACH, fetchedUOM.getDescription());
 
