@@ -42,39 +42,16 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public Mono<IngredientCommand> findByRecipeIdAndIngredientId(String recipeId, String ingredientId) {
-         return recipeReactiveRepository.findById(recipeId)
-                           .map(recipe -> recipe.getIngredients()
-                                .stream()
-                                .filter(ingredient -> ingredient.getId().equalsIgnoreCase(ingredientId))
-                                .findFirst())
-                        .filter(Optional::isPresent)
-                        .map(ingredient -> {
-                            IngredientCommand command = ingredientToIngredientCommand.convert(ingredient.get());
-                            command.setRecipeId(recipeId);
-                            return command;
-                        });
-//        Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
-//
-//        if (!recipeOptional.isPresent()){
-//            //todo impl error handling
-//            log.error("recipe id not found. Id: " + recipeId);
-//        }
-//
-//        Recipe recipe = recipeOptional.get();
-//
-//        Optional<IngredientCommand> ingredientCommandOptional = recipe.getIngredients().stream()
-//                .filter(ingredient -> ingredient.getId().equals(ingredientId))
-//                .map( ingredient -> ingredientToIngredientCommand.convert(ingredient)).findFirst();
-//
-//        if(!ingredientCommandOptional.isPresent()){
-//            //todo impl error handling
-//            log.error("Ingredient id not found: " + ingredientId);
-//        }
-//
-//        IngredientCommand ingredientCommand = ingredientCommandOptional.get();
-//        ingredientCommand.setRecipeId(recipeId);
-//
-//        return Mono.just(ingredientCommandOptional.get());
+        return recipeReactiveRepository
+                .findById(recipeId)
+                .flatMapIterable(Recipe::getIngredients)
+                .filter(ingredient -> ingredient.getId().equalsIgnoreCase(ingredientId))
+                .single()
+                .map(ingredient -> {
+                    IngredientCommand command = ingredientToIngredientCommand.convert(ingredient);
+                    command.setRecipeId(recipeId);
+                    return command;
+                });
     }
 
     @Override
