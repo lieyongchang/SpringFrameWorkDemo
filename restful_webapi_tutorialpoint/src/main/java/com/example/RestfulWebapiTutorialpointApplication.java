@@ -1,4 +1,4 @@
-package com.example.restful_webapi_tutorialpoint;
+package com.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
