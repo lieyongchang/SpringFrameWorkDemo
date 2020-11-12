@@ -39,7 +39,6 @@ public class UserControllerTest {
 	public void formPost() throws Exception {
 
 		MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
-		System.out.println("formData_before: " + formData);
 		formData.add("limit", "3");
 
 		webTestClient.post().uri("users")
