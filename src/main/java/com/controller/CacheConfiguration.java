@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.system;
+package com.controller;
 
 import javax.cache.configuration.MutableConfiguration;
 
