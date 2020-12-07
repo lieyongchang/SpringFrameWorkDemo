@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" />
-<title>Recipe Home</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+
 <body>
-	<h1>Pretend.Co</h1>
-	<table>
-<tr>
-<th>ID</th>
-<th>Description</th>
-</tr>
-<tr th:each="recipe : ${recipes}">
-<td th:text="${recipe.id}">123</td>
-<td th:text=${recipe.description}>Tasty Goodness</td>
-</tr>	
-	
-	</table>
+	<h2>Pretend Co</h2>
+	<div class="row">
+		<div class="col-md-12">
+			<table>
+				<tr>
+					<th>ID</th>
+					<th>Description</th>
+				</tr>
+				<tr th:each="recipe : ${recipes}">
+					<td th:text="${recipe.id}">123</td>
+					<td th:text=${recipe.description}>Tasty Goodness</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
