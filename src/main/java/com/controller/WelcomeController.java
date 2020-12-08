@@ -16,8 +16,15 @@
 
 package com.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.model.Contact;
+import com.model.ContactBusiness;
 
 @Controller
 class WelcomeController {
@@ -27,4 +34,14 @@ class WelcomeController {
 		return "welcome";
 	}
 
+	@RequestMapping("/list_contact")
+	public String listContact(Model model) {
+
+		ContactBusiness business = new ContactBusiness();
+		List<Contact> contactList = business.getContactList();
+
+		model.addAttribute("contacts", contactList);
+
+		return "contact";
+	}
 }
