@@ -23,9 +23,6 @@
 	        <label>Age:</label>
 	        <input type="text" th:field="*{age}" /><br/>
 	 
-	        <label>Gender:</label>
-	        <input type="password" th:field="*{gender}" /><br/>
-	 
 	        <label>Country:</label>
 	        <input type="text" th:field="*{country}" /><br/>
 	 
@@ -45,11 +42,12 @@
 	   		<br/>
 	    </form>
 	    
-	    <button type="submit">Register</button>   
+	    <button type="submit" style="z-index: 1; position:relative;">Submit</button>
+	 	<button type="submit" style="z-index: 1; position:relative;">Reset</button>   
 	</div>
 	
 	<!--   copyright symbol with the current year -->
-	<footer style="position: relative; height: 300px;  width: 100%;">
+	<footer style="position: relative; height: 300px;  width: 100%; z-index:0">
 		<div id="footer"
 			style="position: absolute; width: 100%; line-height: 40px; text-align: center; bottom: 0;">
 			 Copyright &copy; <script>document.write(new Date().getFullYear())</script> PretendCo.</div>

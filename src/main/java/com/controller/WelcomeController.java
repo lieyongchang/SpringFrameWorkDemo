@@ -19,6 +19,8 @@ package com.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.model.Contact;
 import com.model.User;
@@ -36,6 +38,13 @@ class WelcomeController {
 		model.addAttribute("contact", contact);
 
 		return "welcome";
+	}
+
+	@PostMapping("/")
+	public String submitForm(@ModelAttribute("user") User user, @ModelAttribute("contact") Contact contact) {
+		System.out.println(user);
+		System.out.println(contact);
+		return "register_success";
 	}
 
 	/*
