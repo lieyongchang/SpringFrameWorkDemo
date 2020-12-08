@@ -18,7 +18,7 @@
 	    <h1>User Registration</h1>
 	    <form action="#" th:action="@{/}" method="post" th:object="${user}">
 	        <label>Name:</label>
-	        <input type="text" th:field="*{name}" /><br/>
+	        <input type="text" th:field="*{name}" required/><br/>
 	 
 	        <label>Age:</label>
 	        <input type="text" th:field="*{age}" /><br/>
@@ -31,13 +31,13 @@
 	        <input type="radio" th:field="*{gender}" value="Female" />Female<br/>
 	        
 	 		<label>Mobile:</label>
-	        <input type="text" th:field="*{mobile}" /><br/>
+	        <input type="text" th:field="*{mobile}" required/><br/>
 	 
 	        <label>Email:</label>
-	        <input type="text" th:field="*{email}" /><br/>
+	        <input type="text" th:field="*{email}"/><br/>
 	 		
-	 		<button type="submit" style="z-index: 1; position:relative;">Submit</button>
-	 		<button type="submit" style="z-index: 1; position:relative;">Reset</button>   
+	 		<input type="submit" style="z-index: 1; position:relative;" value="Submit">
+	 		<input type="reset" style="z-index: 1; position:relative;" value="Reset">
 	        <br/>
 	   </form>
 	</div>
