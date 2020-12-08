@@ -24,6 +24,7 @@ public class TechstudioAssignment {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TechstudioAssignment.class, args);
+		System.out.print("hello");
 	}
 
 }
