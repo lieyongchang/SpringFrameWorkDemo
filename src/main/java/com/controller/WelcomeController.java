@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.model.Contact;
 import com.model.User;
 
 @Controller
@@ -31,19 +30,15 @@ class WelcomeController {
 	@GetMapping("/")
 	public String welcome(Model model) {
 
-		User user = new User(null, 0, null, null);
+		User user = new User(null, 0, null, null, null, 0);
 		model.addAttribute("user", user);
-
-		Contact contact = new Contact(0, null);
-		model.addAttribute("contact", contact);
 
 		return "welcome";
 	}
 
 	@PostMapping("/")
-	public String submitForm(@ModelAttribute("user") User user, @ModelAttribute("contact") Contact contact) {
+	public String submitForm(@ModelAttribute("user") User user) {
 		System.out.println(user);
-		System.out.println(contact);
 		return "register_success";
 	}
 

@@ -29,21 +29,17 @@
 	        <label>Gender:</label>
 	        <input type="radio" th:field="*{gender}" value="Male" />Male
 	        <input type="radio" th:field="*{gender}" value="Female" />Female<br/>
-	 
-	        <br/>
-	    </form>
-	    <form action="#" th:action="@{/}" method="post" th:object="${contact}">
-	     	<label>Mobile:</label>
+	        
+	 		<label>Mobile:</label>
 	        <input type="text" th:field="*{mobile}" /><br/>
 	 
 	        <label>Email:</label>
 	        <input type="text" th:field="*{email}" /><br/>
-	   		
-	   		<br/>
-	    </form>
-	    
-	    <button type="submit" style="z-index: 1; position:relative;">Submit</button>
-	 	<button type="submit" style="z-index: 1; position:relative;">Reset</button>   
+	 		
+	 		<button type="submit" style="z-index: 1; position:relative;">Submit</button>
+	 		<button type="submit" style="z-index: 1; position:relative;">Reset</button>   
+	        <br/>
+	   </form>
 	</div>
 	
 	<!--   copyright symbol with the current year -->

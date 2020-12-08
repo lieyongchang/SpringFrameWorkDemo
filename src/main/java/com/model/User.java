@@ -5,17 +5,11 @@ public class User {
 	private int age;
 	private String gender;
 	private String country;
+	private String email;
+	private int mobile;
 
 	public String getName() {
 		return name;
-	}
-
-	public User(String name, int age, String gender, String country) {
-		super();
-		this.name = name;
-		this.age = age;
-		this.gender = gender;
-		this.country = country;
 	}
 
 	public void setName(String name) {
@@ -45,4 +39,31 @@ public class User {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(int mobile) {
+		this.mobile = mobile;
+	}
+
+	public User(String name, int age, String gender, String country, String email, int mobile) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+		this.country = country;
+		this.email = email;
+		this.mobile = mobile;
+	}
+
 }
