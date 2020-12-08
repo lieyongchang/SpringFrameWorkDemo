@@ -1,27 +1,21 @@
 package com.model;
 
 public class Contact {
-	private String name;
+	private int mobile;
 	private String email;
-	private String country;
 
-	public Contact() {
+	public Contact(int mobile, String email) {
 		super();
-	}
-
-	public Contact(String name, String email, String country) {
-		super();
-		this.name = name;
+		this.mobile = mobile;
 		this.email = email;
-		this.country = country;
 	}
 
-	public String getName() {
-		return name;
+	public int getMobile() {
+		return mobile;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setMobile(int mobile) {
+		this.mobile = mobile;
 	}
 
 	public String getEmail() {
@@ -32,11 +26,4 @@ public class Contact {
 		this.email = email;
 	}
 
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
 }

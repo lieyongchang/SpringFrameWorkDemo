@@ -3,24 +3,6 @@
 <html xmlns:th="https://www.thymeleaf.org"
 	th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
-<head>
-
-<link rel="stylesheet"
-	href="/css/angular_material/1.2.1/angular-material.min.css">
-<link rel="stylesheet" href="/css/font_face_roboto.css">
-<link rel="stylesheet" href="/css/stylesheet.css">
-<link rel="stylesheet" href="/css/page_actions.css">
-<script src="/js/angularjs/1.8.0/angular.min.js"></script>
-<script src="/js/angularjs/1.8.0/angular-animate.min.js"></script>
-<script src="/js/angularjs/1.8.0/angular-aria.min.js"></script>
-<script src="/js/angularjs/1.8.0/angular-messages.min.js"></script>
-<script src="/js/angular_material/1.2.1/angular-material.min.js"></script>
-<script src="/js/angular_module.js"></script>
-<script src="/js/angular_constants.js"></script>
-<script src="/js/angular_controller.js"></script>
-<script src="/js/page_actions.js" defer></script>
-
-</head>
 <body>
 	<h2 th:text="#{welcome}">PlaceHolder</h2>
 	<div class="row">
@@ -32,90 +14,39 @@
 
 	</th:block>
 	<!-- Feedback form -->
-	<div>
-		<form name="feedbackForm">
-			<h2>Particulars</h2>
-			<!-- formFields: userName -->
-			<md-input-container class="md-block">
-                <label>Name:</label>
-                <input required name="userName"
-                       md-maxlength="30"
-                       ng-model="formFields.userName">
-                <div ng-messages="feedbackForm.userName.$error">
-                    <div ng-message-exp="['required', 'md-maxlength']">Enter your name (30 characters)</div>
-                </div>
-            </md-input-container>
-			<!-- formFields: Age -->
-             <md-input-container class="md-block">
-                 <label>Age:</label>
-                 <input required name="email"
-                        ng-pattern="/^[\w\-\.]+@[\w\-]+\.[a-zA-Z]+$/"
-                        md-maxlength="30"
-                        ng-model="formFields.email">
-                 <div ng-messages="feedbackForm.email.$error">
-                     <div ng-message-exp="['required', 'pattern', 'md-maxlength']">Enter your Age (30 characters)</div>
-                 </div>
-             </md-input-container>
-			<!-- formFields: Gender -->
-             <md-input-container class="md-block">
-                 <label>Gender: </label>
-                 <input type="radio" name="gender" ng-value="Male">Male</label>
-                 <input type="radio" name="gender" ng-value="Female">Female</label>
-                 <!-- <input required name="email"
-                        ng-pattern="/^[\w\-\.]+@[\w\-]+\.[a-zA-Z]+$/"
-                        md-maxlength="30"
-                        ng-model="formFields.email"> -->
-                 <div ng-messages="feedbackForm.email.$error">
-                     <div ng-message-exp="['required', 'pattern', 'md-maxlength']">Select your Gender (30 characters)</div>
-                 </div>
-             </md-input-container>
-             <!-- formFields: Country -->
-             <md-input-container class="md-block">
-                 <label>Country:</label>
-                 <input required name="email"
-                        ng-pattern="/^[\w\-\.]+@[\w\-]+\.[a-zA-Z]+$/"
-                        md-maxlength="30"
-                        ng-model="formFields.email">
-                 <div ng-messages="feedbackForm.email.$error">
-                     <div ng-message-exp="['required', 'pattern', 'md-maxlength']">Enter your Country (30 characters)</div>
-                 </div>
-             </md-input-container>
-             
-		<h2 style="margin-top: 50px;">Contact</h2>
-		 <!-- formFields: Mobile -->
-             <md-input-container class="md-block">
-                 <label>Mobile:</label>
-                 <input required name="email"
-                        ng-pattern="/^[\w\-\.]+@[\w\-]+\.[a-zA-Z]+$/"
-                        md-maxlength="30"
-                        ng-model="formFields.email">
-                 <div ng-messages="feedbackForm.email.$error">
-                     <div ng-message-exp="['required', 'pattern', 'md-maxlength']">Enter your Mobile Number (30 characters)</div>
-                 </div>
-             </md-input-container>
-              <!-- formFields: Email -->
-             <md-input-container class="md-block">
-                 <label>Email:</label>
-                 <input required name="email"
-                        ng-pattern="/^[\w\-\.]+@[\w\-]+\.[a-zA-Z]+$/"
-                        md-maxlength="30"
-                        ng-model="formFields.email">
-                 <div ng-messages="feedbackForm.email.$error">
-                     <div ng-message-exp="['required', 'pattern', 'md-maxlength']">Enter your Email (30 characters)</div>
-                 </div>
-             </md-input-container>
-			<!-- Send button and captcha -->
-			<div layout="row" layout-align="start start" style="margin-top: 10px;">
-				<!-- Send button -->
-				<button aria-label="Submit" type="submit" class="action-button"
-					style="height: 42px; margin: 0;">Send</button>
-				<div flex></div>
-
-			</div>
-		</form>
+	<div align="center">
+	    <h1>User Registration</h1>
+	    <form action="#" th:action="@{/}" method="post" th:object="${user}">
+	        <label>Name:</label>
+	        <input type="text" th:field="*{name}" /><br/>
+	 
+	        <label>Age:</label>
+	        <input type="text" th:field="*{age}" /><br/>
+	 
+	        <label>Gender:</label>
+	        <input type="password" th:field="*{gender}" /><br/>
+	 
+	        <label>Country:</label>
+	        <input type="text" th:field="*{country}" /><br/>
+	 
+	        <label>Gender:</label>
+	        <input type="radio" th:field="*{gender}" value="Male" />Male
+	        <input type="radio" th:field="*{gender}" value="Female" />Female<br/>
+	 
+	        <br/>
+	    </form>
+	    <form action="#" th:action="@{/}" method="post" th:object="${contact}">
+	     	<label>Mobile:</label>
+	        <input type="text" th:field="*{mobile}" /><br/>
+	 
+	        <label>Email:</label>
+	        <input type="text" th:field="*{email}" /><br/>
+	   		
+	   		<br/>
+	    </form>
+	    
+	    <button type="submit">Register</button>   
 	</div>
-	<!-- Divider -->
-	<a href="/list_contact">Click here to list all contacts</a>
 	
 	<!--   copyright symbol with the current year -->
 	<footer style="position: relative; height: 300px;  width: 100%;">
