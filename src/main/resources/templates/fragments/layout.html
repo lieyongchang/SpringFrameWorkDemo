@@ -23,11 +23,18 @@
 <script type="text/javascript">
 	   /*  window.onload=function(){ 
 	        window.setTimeout("redirect()", 5000);
-	    }; 
+	    }; */
 	     
 	     function redirect() {
 	        document.getElementById("test").submit();
-	    }   */
+	    }   
+	    
+	    function myFunction() {
+// 	    	  alert("I am an alert box!");
+			var r = confirm("Are you sure you want to proceed?");
+			if(r)  window.setTimeout("redirect()",5000);
+			else return;
+	    }
 	
 	
 </script> 
@@ -119,19 +126,7 @@
 	</nav>
 	<div class="container-fluid">
 		<div class="container xd-container">
-
 			<th:block th:include="${template}" />
-
-			<!-- <br /> <br />
-			<div class="container">
-				<div class="row">
-					<div class="col-12 text-center">
-						<img src="../static/resources/images/spring-pivotal-logo.png"
-							th:src="@{/resources/images/spring-pivotal-logo.png}"
-							alt="Sponsored by Pivotal" />
-					</div>
-				</div>
-			</div> -->
 		</div>
 	</div>
 	
@@ -173,7 +168,7 @@
 	        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">E-mail error</span>
 	     	</div>   
 
-	 		<input type="button" style="z-index: 1; position:relative;" value="Submit" id="test" onclick="myFunction()">
+	 		<input type="button" style="z-index: 1; position:relative;" value="Submit" id="test"  onclick="myFunction()">
 	 		<input type="reset" style="z-index: 1; position:relative;" value="Reset">
 	      
 	   </form>
