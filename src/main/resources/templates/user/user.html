@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Its working</title>
-</head>
-<body>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'user')}">
 
-</body>
+  <body>
+    <img src="../static/resources/images/companylogo.png" th:src="@{/resources/images/companylogo.png}"/>
+    <h2>This is user page</h2>
+  </body>
+
 </html>

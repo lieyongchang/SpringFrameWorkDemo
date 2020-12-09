@@ -42,7 +42,7 @@
 	button {
 		padding: 10px;
 	}
-	span {
+	p {
 		color: red;
 		font-style: italic;
 	}
@@ -102,6 +102,10 @@
 						<span>Home</span>
 					</li>
 
+					<li th:replace="::menuItem ('/user','user','user page','user','User')">
+						<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+						<span>User</span>
+					</li>
 					<!-- <li
 						th:replace="::menuItem ('/owners/find','owners','find owners','search','Particulars')">
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -159,13 +163,13 @@
 	        <div>
 	 		<label>Mobile:</label>
 	        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" minlength="8"  maxlength="15" th:field="*{mobile}"/>
-	        <span th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></span>
+	        <p th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></p>
 	 		</div> 
 	 
 	 		<div>
 	        <label>Email:</label>
 	        <input type="text" th:field="*{email}"/>
-	        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">E-mail error</span>
+	        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">E-mail error</p>
 	     	</div>   
 
 	 		<input type="button" style="z-index: 1; position:relative;" value="Submit" id="test"  onclick="myFunction()">

@@ -56,6 +56,7 @@ class WelcomeController {
 			// insert query
 			String insert_qurey = "insert into user(" + "name, age, gender, county ,emai, mobile" + "";
 
+			System.out.print("name: " + user.getName());
 			//@formatter:off
 			int rows = jdbcTemplate.update(insert_qurey,
 					            user.getName(), 
