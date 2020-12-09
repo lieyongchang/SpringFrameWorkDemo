@@ -2,9 +2,10 @@
 
 <html xmlns:th="https://www.thymeleaf.org"
 	th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+	
 <body>
 	<h2 th:text="#{welcome}">PlaceHolder</h2>
-	<div class="row">
+	 <div class="row">
 		<div class="col-md-12">
 			<img class="img-responsive"
 				th:src="@{/resources/images/companylogo.png}" />
@@ -13,39 +14,55 @@
 
 	</th:block>
 	<!-- Feedback form -->
-	<div align="center">
+	<!-- <div align="center">
 	    <h1>User Registration</h1>
 	    <form action="#" th:action="@{/}" method="post" th:object="${user}" id="test">
+	    
+	    	<div>
 	        <label>Name:</label>
-	        <input type="text" th:field="*{name}" required/><br/>
+	        <input type="text" th:field="*{name}"/>
+	      	</div>
 	 
+	 		<div>
 	        <label>Age:</label>
-	        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');"   maxlength="2" th:field="*{age}" /><br/>
-	 
+	        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');"   maxlength="2" th:field="*{age}" />
+			</div>
+	
+	 		<div>
 	        <label>Country:</label>
-	        <input type="text" th:field="*{country}" /><br/>
+	        <input type="text" th:field="*{country}" />
+	 		</div>
 	 
+	        <div> 
 	        <label>Gender:</label>
 	        <input type="radio" th:field="*{gender}" value="Male" />Male
-	        <input type="radio" th:field="*{gender}" value="Female" />Female<br/>
+	        <input type="radio" th:field="*{gender}" value="Female" />Female
+	        </div>
 	        
+	        <div>
 	 		<label>Mobile:</label>
-	        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" th:field="*{mobile}" required/><br/>
+	        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" minlength="8"  maxlength="15" th:field="*{mobile}"/>
+	        <span th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></span>
+	 		</div> 
 	 
+	 		<div>
 	        <label>Email:</label>
-	        <input type="text" th:field="*{email}"/><br/>
-	 		<input type="button" style="z-index: 1; position:relative;" value="Submit" id="test">
+	        <input type="text" th:field="*{email}"/>
+	        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">E-mail error</span>
+	     	</div>   
+
+	 		<input type="button" style="z-index: 1; position:relative;" value="Submit" id="test" onclick="myFunction()">
 	 		<input type="reset" style="z-index: 1; position:relative;" value="Reset">
-	        <br/>
+	      
 	   </form>
 	</div>
-	
+	 -->
 	<!--   copyright symbol with the current year -->
-	<footer style="position: relative; height: 300px;  width: 100%; z-index:0">
+	 <!-- <footer style="position: relative; height: 300px;  width: 100%; z-index:-1">
 		<div id="footer"
 			style="position: absolute; width: 100%; line-height: 40px; text-align: center; bottom: 0;">
 			 Copyright &copy; <script>document.write(new Date().getFullYear())</script> PretendCo.</div>
-	</footer>
+	</footer> -->
 </body>
 
 </html>

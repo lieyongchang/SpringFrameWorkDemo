@@ -1,11 +1,26 @@
 package com.model;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class User {
+
+	@Size(min = 3, max = 50)
 	private String name;
+
 	private int age;
+
 	private String gender;
+
 	private String country;
+
+	@NotBlank
+	@Email(message = "Please enter a valid e-mail address")
 	private String email;
+
+	@Min(8)
 	private int mobile;
 
 	public String getName() {
