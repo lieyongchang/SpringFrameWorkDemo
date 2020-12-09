@@ -18,6 +18,8 @@ package com.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +31,10 @@ import com.model.User;
 
 @Controller
 class WelcomeController {
+
+	//
+	@Autowired
+	JdbcTemplate jdbcTemplate;
 
 	@GetMapping("/")
 	public String welcome(Model model) {
@@ -44,9 +50,20 @@ class WelcomeController {
 		System.out.println(user);
 
 		if (bindingResult.hasErrors()) {
-
 			return "welcome";
 		} else {
+
+			// insert query
+			String insert_qurey = "insert into user(" + "name, age, gender, county ,emai, mobile" + "";
+
+			//@formatter:off
+			int rows = jdbcTemplate.update(insert_qurey,
+					            user.getName(), 
+					            user.getAge(), 
+					            user.getCountry(), 
+					            user.getEmail(),
+					            user.getGender(),
+					            user.getMobile());
 			return "register_success";
 		}
 		/* return "register_success"; */
