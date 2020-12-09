@@ -19,7 +19,6 @@ package com.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,13 +27,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.model.User;
+import com.service.UserInfoService;
 
 @Controller
 class WelcomeController {
 
 	//
 	@Autowired
-	JdbcTemplate jdbcTemplate;
+	UserInfoService userInfoService;
 
 	@GetMapping("/")
 	public String welcome(Model model) {
@@ -52,19 +52,7 @@ class WelcomeController {
 		if (bindingResult.hasErrors()) {
 			return "welcome";
 		} else {
-
-			// insert query
-			String insert_qurey = "insert into user(" + "name, age, gender, county ,emai, mobile" + "";
-
-			System.out.print("name: " + user.getName());
-			//@formatter:off
-			int rows = jdbcTemplate.update(insert_qurey,
-					            user.getName(), 
-					            user.getAge(), 
-					            user.getCountry(), 
-					            user.getEmail(),
-					            user.getGender(),
-					            user.getMobile());
+			userInfoService.addUserInfo(user);
 			return "register_success";
 		}
 		/* return "register_success"; */
