@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -24,7 +23,7 @@ public class User {
 	private String name;
 
 	@Column(name = "Age")
-	private int age;
+	private Integer age;
 
 	@Column(name = "Gender")
 	private String gender;
@@ -38,8 +37,18 @@ public class User {
 	private String email;
 
 	@Column(name = "Mobile")
-	@Min(8)
-	private int mobile;
+	private Integer mobile;
+
+	@Column(name = "contact")
+	private String contact;
+
+	public String getContact() {
+		return contact;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
 
 	public String getName() {
 		return name;
@@ -89,7 +98,7 @@ public class User {
 		this.mobile = mobile;
 	}
 
-	public User(String name, int age, String gender, String country, String email, int mobile) {
+	public User(String name, Integer age, String gender, String country, String email, Integer mobile, String contact) {
 		super();
 		this.name = name;
 		this.age = age;
@@ -97,6 +106,7 @@ public class User {
 		this.country = country;
 		this.email = email;
 		this.mobile = mobile;
+		this.contact = contact;
 	}
 
 }

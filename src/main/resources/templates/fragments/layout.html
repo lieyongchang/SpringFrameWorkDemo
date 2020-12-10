@@ -68,7 +68,7 @@
 </style>
 </head>
 
-<body>
+<body onload="document.test.reset();">
 
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="container">
@@ -137,7 +137,7 @@
 	<!-- Feedback form -->
 	<div align="center">
 	    <h1>User Registration</h1>
-	    <form action="#" th:action="@{/}" method="post" th:object="${user}" id="test">
+	    <form action="#" th:action="@{/}" method="post" th:object="${user}" name="test">
 	    
 	    	<div>
 	        <label>Name:</label>
@@ -162,17 +162,24 @@
 	        
 	        <div>
 	 		<label>Mobile:</label>
-	        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" minlength="8"  maxlength="15" th:field="*{mobile}"/>
-	        <p th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></p>
+	        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="15" th:field="*{mobile}"/>
+	        <!-- <p th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></p> -->
 	 		</div> 
 	 
 	 		<div>
 	        <label>Email:</label>
 	        <input type="text" th:field="*{email}"/>
 	        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">E-mail error</p>
-	     	</div>   
+	     	</div>
+	     	
+	     	<div> 
+	        <label>Contact:</label>
+	        <input type="radio" th:field="*{contact}" value="Mobile" />Mobile
+	        <input type="radio" th:field="*{contact}" value="Email"  />Email
+	        </div>   
 
-	 		<input type="button" style="z-index: 1; position:relative;" value="Submit" id="test"  onclick="myFunction()">
+	 		<!-- <input type="button" style="z-index: 1; position:relative;" value="Submit" id="test"  onclick="myFunction()"> -->
+	 		<input type="submit" style="z-index: 1; position:relative;" value="Submit">
 	 		<input type="reset" style="z-index: 1; position:relative;" value="Reset">
 	      
 	   </form>

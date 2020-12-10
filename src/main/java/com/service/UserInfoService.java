@@ -12,6 +12,11 @@ public class UserInfoService {
 	private UserRepository userRepository;
 
 	public void addUserInfo(User userInfo) {
+//		System.out.println("Selected gender: " + userInfo.getGender());
+
+		// save only the radio index inside dataabase
+//		System.out.println("User info: " + userInfo);
+
 		userRepository.save(userInfo);
 	}
 }

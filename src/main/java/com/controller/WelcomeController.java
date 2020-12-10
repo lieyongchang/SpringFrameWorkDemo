@@ -19,18 +19,31 @@ package com.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.model.User;
 import com.service.UserInfoService;
 
+import Validator.UserValidator;
+import integerEditor.IntegerEditor;
+
 @Controller
 class WelcomeController {
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+		binder.registerCustomEditor(int.class, new IntegerEditor());
+	}
 
 	//
 	@Autowired
@@ -39,15 +52,18 @@ class WelcomeController {
 	@GetMapping("/")
 	public String welcome(Model model) {
 
-		User user = new User(null, 0, null, null, null, 0);
+		User user = new User(null, 0, null, null, null, 0, null);
 		model.addAttribute("user", user);
 
 		return "welcome";
 	}
 
-	@PostMapping("/")
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String submitForm(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
-		System.out.println(user);
+//		System.out.println(user);
+
+		UserValidator userValidator = new UserValidator();
+		userValidator.validate(user, bindingResult);
 
 		if (bindingResult.hasErrors()) {
 			return "welcome";
@@ -55,7 +71,6 @@ class WelcomeController {
 			userInfoService.addUserInfo(user);
 			return "register_success";
 		}
-		/* return "register_success"; */
 	}
 
 	/*
