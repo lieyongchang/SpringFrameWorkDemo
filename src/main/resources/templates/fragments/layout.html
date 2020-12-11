@@ -102,7 +102,7 @@
 						<span>Home</span>
 					</li>
 
-					<li th:replace="::menuItem ('/user','user','user page','user','User')">
+					<li th:replace="::menuItem ('/user.html','users','user page','th-list','User')">
 						<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 						<span>User</span>
 					</li>
@@ -177,7 +177,7 @@
 	 		<div>
 	        <label>Email:</label>
 	        <input type="text" th:field="*{email}"/>
-	        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">E-mail error</p>
+	        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" required="true">E-mail error</p>
 	     	</div>
 	     	
 	     	<div> 
@@ -210,13 +210,11 @@
 			</div>
 		</div>
 	</div>
-	<!--   copyright symbol with the current year -->
-	<footer style="position: relative; height: 300px;  width: 100%; z-index:-1">
-		<div id="footer"
-			style="position: absolute; width: 100%; line-height: 40px; text-align: center; bottom: 0;">
-			 Copyright &copy; <script>document.write(new Date().getFullYear())</script> PretendCo.</div>
-	</footer>
 	
+	<!--   copyright symbol with the current year -->
+	<div th:insert="fragments/footer :: footer"></div>
+	
+
 	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>

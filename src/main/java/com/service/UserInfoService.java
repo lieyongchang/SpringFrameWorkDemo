@@ -20,10 +20,10 @@ public class UserInfoService {
 	 * 
 	 * */
 
-	public String addUserInfo(User user, BindingResult bindingResult) {
+	public void addUserInfo(User user, BindingResult bindingResult) {
 
 		// Condition to check if the contact field matches with the Email/Mobile field
-		if (user.getContact().equalsIgnoreCase("Email")) {
+		if (user.getContact() != null && user.getContact().equalsIgnoreCase("Email")) {
 			user.setContact(user.getEmail());
 		} else if (user.getContact().equalsIgnoreCase("Mobile") && user.getMobile() != 0) {
 			System.out.print("enter here");
@@ -32,11 +32,5 @@ public class UserInfoService {
 
 		UserValidator userValidator = new UserValidator();
 		userValidator.validate(user, bindingResult);
-		if (bindingResult.hasErrors()) {
-			return "welcome";
-		} else {
-			userRepository.save(user);
-			return "register_success";
-		}
 	}
 }

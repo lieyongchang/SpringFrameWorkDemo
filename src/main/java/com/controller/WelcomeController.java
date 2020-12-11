@@ -65,6 +65,11 @@ class WelcomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String submitForm(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
-		return userInfoService.addUserInfo(user, bindingResult);
+
+		if (bindingResult.hasErrors())
+			return "welcome";
+
+		userInfoService.addUserInfo(user, bindingResult);
+		return "register_success";
 	}
 }
