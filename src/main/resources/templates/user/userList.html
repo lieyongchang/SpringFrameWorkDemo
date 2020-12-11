@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/defaultLayout :: defaultLayout (~{::body},'users')}">
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{fragments/defaultLayout :: defaultLayout (~{::body},'users')}">
 
 <body>
 	<img src="../static/resources/images/companylogo.png"
@@ -10,6 +11,7 @@
 	<table id="users" class="table table-striped">
 		<thead>
 			<tr>
+				<th>ID</th>
 				<th>Name</th>
 				<th>Age</th>
 				<th>Gender</th>
@@ -21,6 +23,7 @@
 		</thead>
 		<tbody>
 			<tr th:each="user : ${userlist}">
+				<td th:text="${user.id}"></td>
 				<td th:text="${user.name}"></td>
 				<td th:text="${user.age}"></td>
 				<td th:text="${user.gender}"></td>
@@ -28,6 +31,8 @@
 				<td th:text="${user.email}"></td>
 				<td th:text="${user.mobile}"></td>
 				<td th:text="${user.contact}"></td>
+				<td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
+				<td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
 			</tr>
 		</tbody>
 	</table>

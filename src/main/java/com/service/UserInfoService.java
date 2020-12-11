@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.model.User;
+import com.repository.UserRepository;
 
 import Validator.UserValidator;
 
@@ -15,11 +16,12 @@ public class UserInfoService {
 
 	public List<User> users = new ArrayList<>();
 
-	/*
-	 * 
-	 * 
-	 * 
-	 * */
+	private UserRepository userRepository;
+
+	public UserInfoService(UserRepository userRepository) {
+		super();
+		this.userRepository = userRepository;
+	}
 
 	public void addUserInfo(User user, BindingResult bindingResult) {
 
@@ -38,6 +40,8 @@ public class UserInfoService {
 		UserValidator userValidator = new UserValidator();
 		userValidator.validate(user, bindingResult);
 
+		// This will push to pretendco_yc
+		userRepository.save(user);
 	}
 
 }
