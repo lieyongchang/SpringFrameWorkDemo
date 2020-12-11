@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'error')}">
 <head>
 <meta charset="ISO-8859-1">
 <title>Registration Success</title>
@@ -32,7 +32,10 @@ span {
 		<br /> 
 		<span>Email</span>
 		<span th:text="${user.email}"></span>
-		<br /> 
+		<br />
+		<span>Contact</span>
+		<span th:text="${user.contact}"></span>
+		<br />
 	</div>
 </body>
 </html>
