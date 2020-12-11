@@ -1,32 +1,28 @@
 package com.controller;
 
-import java.util.Map;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.repository.UserRepository;
 
 @Controller
 public class UserController {
 
-	private final UserRepository userRepo;
+//	private final UserInfoService userInfoService;
+	private final UserRepository userRepository;
 
-	public UserController(UserRepository userRepo) {
-		this.userRepo = userRepo;
+	public UserController(UserRepository userRepository) {
+		this.userRepository = userRepository;
 	}
 
-	@GetMapping("/user.html")
-	public String showUserList(Map<String, Object> model) {
-		// Here we are returning an object of type 'Vets' rather than a collection of
-		// Vet
-		// objects so it is simpler for Object-Xml mapping
-		/*
-		 * UserDomain userDomain = new UserDomain();
-		 * userDomain.getVetList().addAll(this.userRepo.findAll()); model.put("users",
-		 * userRepo);
-		 */
-		return "user/userList";
+	@RequestMapping(value = "/userList", method = RequestMethod.GET)
+	public String ListUserInfo(Model model) {
+		model.addAttribute("userlist", userRepository.findAll());
+
+		return "/user/userList";
+
 	}
 
 }

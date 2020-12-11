@@ -33,4 +33,8 @@ public class UserInfoService {
 		UserValidator userValidator = new UserValidator();
 		userValidator.validate(user, bindingResult);
 	}
+
+//	public List<User> listAll() {
+//		return userRepository.findAll();
+//	}
 }
