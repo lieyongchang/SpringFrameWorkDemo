@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="https://www.thymeleaf.org"
-	th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+	th:replace="~{fragments/defaultLayout :: defaultLayout (~{::body},'home')}">
 	
 <body>
 	<h2 th:text="#{welcome}">PlaceHolder</h2>
@@ -10,6 +10,64 @@
 			<img class="img-responsive"
 				th:src="@{/resources/images/companylogo.png}" />
 		</div>
+		<div align="center">
+	    <h1>User Registration</h1>
+	    <form action="#" th:action="@{/}" method="post" th:object="${user}" name="test">
+	    
+	    	<div>
+	        <label>Name:</label>
+	        <input type="text" th:field="*{name}"/>
+	      	</div>
+	 
+	 		<div>
+	        <label>Age:</label>
+	        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');"   maxlength="3" th:field="*{age}" />
+			</div>
+	
+	 		<div>
+	        <label>Country:</label>
+	        <input type="text" th:field="*{country}" />
+	 		</div>
+	 
+	        <div> 
+	        <label>Gender:</label>
+	        <!-- <input type="radio" th:field="*{gender}" value='M' />Male
+	        <input type="radio" th:field="*{gender}" value='F' />Female -->
+	        <select class="form-control" id="gender" th:field="*{gender}">
+			    <option th:each="gender : ${T(com.model.User.GENDER).values()}"
+                th:value="${gender}"
+                th:text="${gender}"></option>
+                <!-- th:text="${gender}"
+                th:selected="${gender.equals(group.GENDER)}" -->
+			</select>
+	        
+	        </div>
+	        
+	        <div>
+	 		<label>Mobile:</label>
+	        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="15" th:field="*{mobile}"/>
+	        <!-- <p th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></p> -->
+	 		</div> 
+	 
+	 		<div>
+	        <label>Email:</label>
+	        <input type="text" th:field="*{email}"/>
+	        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" required="true">E-mail error</p>
+	     	</div>
+	     	
+	     	<div> 
+	        <label>Contact:</label>
+	        <input type="radio" th:field="*{contact}" value="Mobile" />Mobile
+	        <input type="radio" th:field="*{contact}" value="Email"  />Email
+	        </div>   
+
+	 		<!-- <input type="button" style="z-index: 1; position:relative;" value="Submit" id="test"  onclick="myFunction()"> -->
+	 		<input type="submit" style="z-index: 1; position:relative;" value="Submit">
+	 		<input type="reset" style="z-index: 1; position:relative;" value="Reset">
+	      
+	   </form>
+	</div>
+	<!-- Feedback form -->
 	</div>
 </body>
 
