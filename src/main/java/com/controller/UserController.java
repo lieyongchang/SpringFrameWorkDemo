@@ -19,6 +19,7 @@ public class UserController {
 
 	@RequestMapping(value = "/userList", method = RequestMethod.GET)
 	public String ListUserInfo(Model model) {
+
 		model.addAttribute("userlist", userRepository.findAll());
 
 		return "/user/userList";
