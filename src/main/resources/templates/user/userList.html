@@ -12,12 +12,22 @@
 			<tr>
 				<th>Name</th>
 				<th>Age</th>
+				<th>Gender</th>
+				<th>Country</th>
+				<th>Email</th>
+				<th>Mobile</th>
+				<th>Contact</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="user : ${userlist}">
 				<td th:text="${user.name}"></td>
 				<td th:text="${user.age}"></td>
+				<td th:text="${user.gender}"></td>
+				<td th:text="${user.country}"></td>
+				<td th:text="${user.email}"></td>
+				<td th:text="${user.mobile}"></td>
+				<td th:text="${user.contact}"></td>
 			</tr>
 		</tbody>
 	</table>
