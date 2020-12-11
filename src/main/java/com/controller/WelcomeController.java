@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.model.User;
+import com.model.User.GENDER;
 import com.service.UserInfoService;
 
 import Validator.UserValidator;
@@ -38,6 +39,11 @@ import integerEditor.IntegerEditor;
 
 @Controller
 class WelcomeController {
+
+	/*
+	 * This is so that, empty fields will not throw error when submit the form
+	 * 
+	 */
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -52,7 +58,7 @@ class WelcomeController {
 	@GetMapping("/")
 	public String welcome(Model model) {
 
-		User user = new User(null, 0, null, null, null, 0, null);
+		User user = new User(null, 0, (GENDER) null, null, null, 0, null);
 		model.addAttribute("user", user);
 
 		return "welcome";
@@ -60,7 +66,11 @@ class WelcomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String submitForm(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
-//		System.out.println(user);
+
+		/*
+		 * Condition to check if the contact field matches with the Email/Mobile field
+		 * 
+		 */
 
 		if (user.getContact().equalsIgnoreCase("Email")) {
 			user.setContact(user.getEmail());
@@ -79,15 +89,4 @@ class WelcomeController {
 			return "register_success";
 		}
 	}
-
-	/*
-	 * @RequestMapping("/list_contact") public String listContact(Model model) {
-	 * 
-	 * ContactBusiness business = new ContactBusiness(); List<Contact> contactList =
-	 * business.getContactList();
-	 * 
-	 * model.addAttribute("contacts", contactList);
-	 * 
-	 * return "contact"; }
-	 */
 }

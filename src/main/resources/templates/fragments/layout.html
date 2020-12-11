@@ -146,7 +146,7 @@
 	 
 	 		<div>
 	        <label>Age:</label>
-	        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');"   maxlength="2" th:field="*{age}" />
+	        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');"   maxlength="3" th:field="*{age}" />
 			</div>
 	
 	 		<div>
@@ -156,8 +156,16 @@
 	 
 	        <div> 
 	        <label>Gender:</label>
-	        <input type="radio" th:field="*{gender}" value="Male" />Male
-	        <input type="radio" th:field="*{gender}" value="Female" />Female
+	        <!-- <input type="radio" th:field="*{gender}" value='M' />Male
+	        <input type="radio" th:field="*{gender}" value='F' />Female -->
+	        <select class="form-control" id="gender" th:field="*{gender}">
+			    <option th:each="gender : ${T(com.model.User.GENDER).values()}"
+                th:value="${gender}"
+                th:text="${gender}"></option>
+                <!-- th:text="${gender}"
+                th:selected="${gender.equals(group.GENDER)}" -->
+			</select>
+	        
 	        </div>
 	        
 	        <div>

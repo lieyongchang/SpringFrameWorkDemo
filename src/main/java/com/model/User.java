@@ -14,6 +14,10 @@ import javax.validation.constraints.Size;
 @Table(name = "user")
 public class User {
 
+	public enum GENDER {
+		MALE, FEMALE, OTHERS
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -26,7 +30,7 @@ public class User {
 	private Integer age;
 
 	@Column(name = "Gender")
-	private String gender;
+	private GENDER gender;
 
 	@Column(name = "Country")
 	private String country;
@@ -66,11 +70,11 @@ public class User {
 		this.age = age;
 	}
 
-	public String getGender() {
+	public GENDER getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(GENDER gender) {
 		this.gender = gender;
 	}
 
@@ -98,7 +102,7 @@ public class User {
 		this.mobile = mobile;
 	}
 
-	public User(String name, Integer age, String gender, String country, String email, Integer mobile, String contact) {
+	public User(String name, Integer age, GENDER gender, String country, String email, Integer mobile, String contact) {
 		super();
 		this.name = name;
 		this.age = age;
