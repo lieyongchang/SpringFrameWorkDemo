@@ -3,14 +3,16 @@ package com.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.model.User;
 import com.repository.UserRepository;
 import com.service.UserInfoService;
 
 /**
- * @author yongchang
- *
+ * @author yongchang Only redirects
  */
 @Controller
 public class UserController {
@@ -38,6 +40,8 @@ public class UserController {
 	}
 
 	/**
+	 * Update form
+	 * 
 	 * @param id
 	 * @param model
 	 * @return
@@ -52,6 +56,8 @@ public class UserController {
 	/*
 	 * */
 	/**
+	 * Update user
+	 * 
 	 * @param id
 	 * @param user
 	 * @param result
@@ -68,16 +74,20 @@ public class UserController {
 	 */
 
 	/**
+	 * Delete
+	 * 
 	 * @param id
 	 * @param model
 	 * @return
 	 */
-	/*
-	 * @GetMapping("/delete/{id}") public String deleteUser(@PathVariable("id") long
-	 * id, Model model) { User user = userRepository.findById(id) .orElseThrow(() ->
-	 * new IllegalArgumentException("Invalid user Id:" + id));
-	 * userRepository.delete(user); model.addAttribute("users",
-	 * userRepository.findAll()); return "index"; }
-	 */
+
+	@GetMapping("/delete/{id}")
+	public String deleteUser(@PathVariable("id") long id, Model model) {
+		User user = userRepository.findById(id)
+		        .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+		userRepository.delete(user);
+		model.addAttribute("users", userRepository.findAll());
+		return "/user/userList";
+	}
 
 }

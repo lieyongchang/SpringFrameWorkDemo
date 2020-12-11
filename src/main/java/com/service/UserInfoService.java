@@ -11,6 +11,9 @@ import com.repository.UserRepository;
 
 import Validator.UserValidator;
 
+/**
+ * @author yongchang Business logic
+ */
 @Service
 public class UserInfoService {
 
@@ -23,6 +26,10 @@ public class UserInfoService {
 		this.userRepository = userRepository;
 	}
 
+	/**
+	 * @param user
+	 * @param bindingResult
+	 */
 	public void addUserInfo(User user, BindingResult bindingResult) {
 
 		if (user != null) {

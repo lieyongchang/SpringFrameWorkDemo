@@ -110,6 +110,9 @@ public class User {
 		this.mobile = mobile;
 	}
 
+	public User() {
+	}
+
 	public User(String name, Integer age, GENDER gender, String country, String email, Integer mobile, String contact) {
 		super();
 		this.name = name;
