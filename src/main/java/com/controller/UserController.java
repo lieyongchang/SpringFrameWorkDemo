@@ -1,26 +1,27 @@
 package com.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.repository.UserRepository;
+import com.service.UserInfoService;
 
 @Controller
 public class UserController {
 
-//	private final UserInfoService userInfoService;
-	private final UserRepository userRepository;
+	private final UserInfoService userInfoService;
+	// private final UserRepository userRepository;
 
-	public UserController(UserRepository userRepository) {
-		this.userRepository = userRepository;
+	@Autowired
+	public UserController(UserInfoService userInfoService) {
+		this.userInfoService = userInfoService;
 	}
 
-	@RequestMapping(value = "/userList", method = RequestMethod.GET)
+	@RequestMapping(value = "/userList")
 	public String ListUserInfo(Model model) {
 
-		model.addAttribute("userlist", userRepository.findAll());
+		model.addAttribute("userlist", userInfoService.users);
 
 		return "/user/userList";
 

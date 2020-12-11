@@ -70,6 +70,7 @@ class WelcomeController {
 			return "welcome";
 
 		userInfoService.addUserInfo(user, bindingResult);
+
 		return "register_success";
 	}
 }
