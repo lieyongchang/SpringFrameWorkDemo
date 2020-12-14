@@ -46,6 +46,17 @@ public class User {
 	@Column(name = "contact")
 	private String contact;
 
+	@Column(name = "DOB")
+	private String birthdate;
+
+	public String getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(String birthdate) {
+		this.birthdate = birthdate;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -113,7 +124,8 @@ public class User {
 	public User() {
 	}
 
-	public User(String name, Integer age, GENDER gender, String country, String email, Integer mobile, String contact) {
+	public User(String name, Integer age, GENDER gender, String country, String email, Integer mobile, String contact,
+	        String birthdate) {
 		super();
 		this.name = name;
 		this.age = age;
@@ -122,6 +134,7 @@ public class User {
 		this.email = email;
 		this.mobile = mobile;
 		this.contact = contact;
+		this.birthdate = birthdate;
 	}
 
 }
