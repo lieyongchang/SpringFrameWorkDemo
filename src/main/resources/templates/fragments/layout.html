@@ -9,7 +9,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="shortcut icon" type="image/x-icon" th:href="@{/resources/images/favicon.png}">
-
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" rel="stylesheet">
+   
   <title>TechStudio :: Assignments</title>
 
   <!--[if lt IE 9]>
@@ -128,7 +130,18 @@
   <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
   <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
   <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+<script>
+$('.input-group.date').datepicker({
+    format: "yyyy/mm/dd",
+    startDate: "2012-01-01",
+    endDate: "2015-01-01",
+    todayBtn: "linked",
+    autoclose: true,
+    todayHighlight: true
+    });
+</script>
 </body>
 
 </html>
