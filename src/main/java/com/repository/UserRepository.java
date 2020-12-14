@@ -1,7 +1,5 @@
 package com.repository;
 
-import java.util.Optional;
-
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,8 +10,8 @@ import com.model.User;
 // in form of proxy instances.
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends CrudRepository<User, Long> {
 
-	Optional<User> findById(long id);
+//	Optional<User> findById(long id);
 
 }

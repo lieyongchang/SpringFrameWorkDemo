@@ -1,9 +1,13 @@
 package com.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 
 import com.model.User;
@@ -49,6 +53,52 @@ public class UserInfoService {
 
 		// This will push to pretendco_yc
 		userRepository.save(user);
+	}
+
+	/**
+	 * @return
+	 */
+	public Set<User> getUser() {
+		// recipeSet is just a container
+		Set<User> userSet = new HashSet<>();
+
+		// go through recipe repo, and put everything into the container
+		userRepository.findAll().iterator().forEachRemaining(userSet::add);
+
+		return userSet;
+	}
+
+	/**
+	 * @param user
+	 * @return
+	 */
+	@Transactional
+	public User saveUserCommand(User user) {
+
+		User saveUser = userRepository.save(user);
+		return saveUser;
+
+	}
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	public User findById(Long id) {
+		Optional<User> userOptional = userRepository.findById(id);
+
+		if (!userOptional.isPresent()) {
+			throw new RuntimeException("User Not Found!");
+		}
+
+		return userOptional.get();
+	}
+
+	/**
+	 * @param idToDelete
+	 */
+	public void deleteById(Long idToDelete) {
+		userRepository.deleteById(idToDelete);
 	}
 
 }
