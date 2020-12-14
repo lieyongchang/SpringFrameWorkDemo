@@ -55,8 +55,16 @@
 	        <label>Contact:</label>
 	        <input type="radio" th:field="*{contact}" value="Mobile" />Mobile
 	        <input type="radio" th:field="*{contact}" value="Email"  />Email
-	        </div>   
-
+	        </div>
+	        
+	           
+			<div class="col-md-3">
+	        <label for="date">Date of Birth:</label>
+             <input type="Date" th:field="*{birthdate}"/>
+             <i class="fa fa-calendar" aria-hidden="true"></i>
+		    </div>
+		    
+		    
 	 		<!-- <input type="button" style="z-index: 1; position:relative;" value="Submit" id="test"  onclick="myFunction()"> -->
 	 		<input type="submit" style="z-index: 1; position:relative;" value="Submit">
 	 		<input type="reset" style="z-index: 1; position:relative;" value="Reset">

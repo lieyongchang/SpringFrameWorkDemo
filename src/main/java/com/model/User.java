@@ -1,5 +1,7 @@
 package com.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "user")
@@ -46,14 +50,15 @@ public class User {
 	@Column(name = "contact")
 	private String contact;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "DOB")
-	private String birthdate;
+	private Date birthdate;
 
-	public String getBirthdate() {
+	public Date getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(String birthdate) {
+	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
 
@@ -125,7 +130,7 @@ public class User {
 	}
 
 	public User(String name, Integer age, GENDER gender, String country, String email, Integer mobile, String contact,
-	        String birthdate) {
+	        Date birthdate) {
 		super();
 		this.name = name;
 		this.age = age;
