@@ -68,7 +68,7 @@ class WelcomeController {
 
 		if (bindingResult.hasErrors())
 			return "welcome";
-
+		System.out.println("date: " + user.getBirthdate());
 		userInfoService.addUserInfo(user, bindingResult);
 
 		return "register_success";

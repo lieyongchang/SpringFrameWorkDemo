@@ -19,6 +19,7 @@
 				<th>Email</th>
 				<th>Mobile</th>
 				<th>Contact</th>
+				<th>Birthdate</th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -33,6 +34,7 @@
 				<td th:text="${user.email}"></td>
 				<td th:text="${user.mobile}"></td>
 				<td th:text="${user.contact}"></td>
+				<td th:text="${user.birthdate}"></td>
 				<td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
 				<td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
 			</tr>

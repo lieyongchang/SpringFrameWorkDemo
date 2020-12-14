@@ -50,7 +50,7 @@ public class User {
 	@Column(name = "contact")
 	private String contact;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	@Column(name = "DOB")
 	private Date birthdate;
 
@@ -130,7 +130,7 @@ public class User {
 	}
 
 	public User(String name, Integer age, GENDER gender, String country, String email, Integer mobile, String contact,
-	        Date birthdate) {
+			Date birthdate) {
 		super();
 		this.name = name;
 		this.age = age;
