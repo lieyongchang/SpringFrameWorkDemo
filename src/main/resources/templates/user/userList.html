@@ -8,7 +8,8 @@
 
 	<h2>User</h2>
 
-	<table id="users" class="table table-bordered table-responsive " style="width: 100%">
+	<table id="users" class="table table-bordered table-responsive "
+		style="width: 100%">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -24,8 +25,24 @@
 				<th></th>
 			</tr>
 		</thead>
-		 <tbody>
-			<tr th:each="user : ${userlist}">
+		<tbody>
+			<!-- uncomment to see it work  -->
+			 <tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td> 
+				
+				
+				<!-- does not make a different  -->
+		 <!-- <tr th:each="user : ${userlist}">
 				<td th:text="${user.id}"></td>
 				<td th:text="${user.name}"></td>
 				<td th:text="${user.age}"></td>
@@ -36,48 +53,49 @@
 				<td th:text="${user.contact}"></td>
 				<td th:text="${#dates.format(user.birthdate, 'dd/MM/yyyy')}"></td>
 				<td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
-				<td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
+				<td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td> -->
 			</tr>
 		</tbody>
 	</table>
 
- <script>
-/*  $(document).ready( function () {
-     $('#users').DataTable();
- } );  */
- 
+	<script>
+		/*  $(document).ready( function () {
+		 $('#users').DataTable();
+		 } );  */
 
-	 
- $('#users').DataTable({
-        "processing": true,
-        "serverSide": true,
-         "ajax": {
-            "url": "/userList",
-            "type": "POST",
-            "dataType": "json",
-            "contentType": "application/json",
-            "data": function (d) {
-                return JSON.stringify(d);
-            } 
-         },
-        "columns": [
-            {"data": "name"},
-            {"data": "age"},
-            {"data": "gender"},
-            {"data": "country"},
-            {"data": "email"},
-            {"data": "mobile"},
-            {"data": "contact"},
-            {"data": "birthdate"}
-        ]
-    });
-  
- 
- 
-/*    var versionNo = $.fn.dataTable.version;
- alert(versionNo);  */ 
-/*  alert(jQuery.fn.jquery); */
- 
-</script>
+		$('#users').DataTable({
+			"processing" : true,
+			"serverSide" : true,
+			"ajax" : {
+				"url" : "findall",
+				"dataSrc":"",
+				"type" : "POST",
+				"dataType" : "json",
+				"contentType" : "application/json",
+				"data" : function(d) {
+					console.log("data: ", d);
+					return JSON.stringify(d);
+				
+				}
+			},
+			 "columns": [
+				 	{"data": "id"},
+		            {"data": "name"},
+		            {"data": "age"},
+		            {"data": "gender"},
+		            {"data": "country"},
+		            {"data": "email"},
+		            {"data": "mobile"},
+		            {"data": "contact"},
+		            {"data": "birthdate"},
+	                {"data": ""},
+		            {"data": ""} 
+		        ]
+		    });
+
+		/*    var versionNo = $.fn.dataTable.version;
+		 alert(versionNo);  */
+		/*  alert(jQuery.fn.jquery); */
+	</script>
 </body>
 </html>

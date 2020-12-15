@@ -1,7 +1,6 @@
 package com.service;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +20,6 @@ import Validator.UserValidator;
  */
 @Service
 public class UserInfoService {
-
-	// this is for data table
-	private static final Comparator<User> EMPTY_COMPARATOR = (e1, e2) -> 0;
 
 	public List<User> users = new ArrayList<>();
 
@@ -65,9 +61,9 @@ public class UserInfoService {
 	public Set<User> getUser() {
 		// recipeSet is just a container
 		Set<User> userSet = new HashSet<>();
+
 		// go through recipe repo, and put everything into the container
 		userRepository.findAll().iterator().forEachRemaining(userSet::add);
-
 		return userSet;
 	}
 
