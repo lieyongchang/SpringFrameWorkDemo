@@ -1,6 +1,7 @@
 package com.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +21,9 @@ import Validator.UserValidator;
  */
 @Service
 public class UserInfoService {
+
+	// this is for data table
+	private static final Comparator<User> EMPTY_COMPARATOR = (e1, e2) -> 0;
 
 	public List<User> users = new ArrayList<>();
 
@@ -99,5 +103,4 @@ public class UserInfoService {
 	public void deleteById(Long idToDelete) {
 		userRepository.deleteById(idToDelete);
 	}
-
 }
