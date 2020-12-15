@@ -22,7 +22,6 @@
 				<th>Contact</th>
 				<th>Birthdate</th>
 				<th></th>
-				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -38,7 +37,6 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td></td> 
 				
 				
 				<!-- does not make a different  -->
@@ -59,11 +57,11 @@
 	</table>
 
 	<script>
-		/*  $(document).ready( function () {
-		 $('#users').DataTable();
-		 } );  */
+		 
+var editor; 
 
-		$('#users').DataTable({
+ $(document).ready(function() {		 
+	 editor = $('#users').DataTable({
 			"processing" : true,
 			"serverSide" : true,
 			"ajax" : {
@@ -75,7 +73,6 @@
 				"data" : function(d) {
 					console.log("data: ", d);
 					return JSON.stringify(d);
-				
 				}
 			},
 			 "columns": [
@@ -88,14 +85,36 @@
 		            {"data": "mobile"},
 		            {"data": "contact"},
 		            {"data": "birthdate"},
-	                {"data": ""},
-		            {"data": ""} 
+	                {
+	                    data: null,
+	                    className: "center",
+	                    defaultContent: '<a href="">Edit</a> / <a href="" class="editor_remove">Delete</a>'
+	                }
+		            /* {"data": ""} */ 
 		        ]
 		    });
-
-		/*    var versionNo = $.fn.dataTable.version;
-		 alert(versionNo);  */
-		/*  alert(jQuery.fn.jquery); */
+	 
+	// Delete a record
+	 $('#users').on('click', 'tbody tr', function() {
+		 editor.row(this).remove().draw( false );
+		});
+		  
+		  
+	 
+		// Delete a record
+	 /*    $('#users').on('click', 'a.editor_remove', function (e) {
+	        e.preventDefault();
+	 
+	        editor.remove( $(this).closest('tr'), {
+	            title: 'Delete record',
+	            message: 'Are you sure you wish to remove this record?',
+	            buttons: 'Delete'
+	        } );
+	    } ); */		
+	 }); 
+	 /*  var versionNo = $.fn.dataTable.version;
+		 alert(versionNo); */
+		  //alert(jQuery.fn.jquery);
 	</script>
 </body>
 </html>
