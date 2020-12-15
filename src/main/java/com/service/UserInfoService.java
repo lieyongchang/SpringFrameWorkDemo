@@ -61,7 +61,6 @@ public class UserInfoService {
 	public Set<User> getUser() {
 		// recipeSet is just a container
 		Set<User> userSet = new HashSet<>();
-
 		// go through recipe repo, and put everything into the container
 		userRepository.findAll().iterator().forEachRemaining(userSet::add);
 
