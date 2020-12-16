@@ -12,6 +12,6 @@ import com.model.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 
-//	Optional<User> findById(long id);
+	/* Optional<User> findById(int id); */
 
 }

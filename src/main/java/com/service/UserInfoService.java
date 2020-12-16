@@ -83,7 +83,7 @@ public class UserInfoService {
 	 * @param id
 	 * @return
 	 */
-	public User findById(Long id) {
+	public User findById(long id) {
 		Optional<User> userOptional = userRepository.findById(id);
 
 		if (!userOptional.isPresent()) {

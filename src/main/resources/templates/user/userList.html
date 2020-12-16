@@ -76,7 +76,8 @@
 			            },
 			            /* {"data": "birthdate"}, */
 			            {"mRender": function ( data, type, row ) {
-			            	  return data = '<a href=/edit/"'  +  parseInt(row.id) +'">Edit</a>'},
+			            	/*   return data = '<a href=/edit/'  + row.id +'>Edit</a>'}, */
+			            	  return '<a href=/edit/'  + row.id +'>Edit</a>'},
 	                        "sortable": false
 	                	},
 			            {"mRender": function ( data, type, row ) {
@@ -88,17 +89,9 @@
 			    });	
 		
 		
-		/*  table.on('draw', function() {
-			    console.log('draw');
-			  }) */
-		console.log("Before No. of rows: ", table.row().count());
-		// #myInput is a <input type="text"> element
+          // search via gender
 		 $('input').keyup(function() {
 		   table.search(this.value).draw();
-		   
-		/* 	 table.clear().draw(); */
-			 
-			 console.log("After No. of rows: ", table.row().count());
 		 } );
 		
 	  });
