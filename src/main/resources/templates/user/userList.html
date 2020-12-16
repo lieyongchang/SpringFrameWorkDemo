@@ -22,10 +22,10 @@
 				<th>Contact</th>
 				<th>Birthdate</th>
 				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
-			<!-- uncomment to see it work  -->
 			 <tr>
 				<td></td>
 				<td></td>
@@ -37,84 +37,55 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				
-				
-				<!-- does not make a different  -->
-		 <!-- <tr th:each="user : ${userlist}">
-				<td th:text="${user.id}"></td>
-				<td th:text="${user.name}"></td>
-				<td th:text="${user.age}"></td>
-				<td th:text="${user.gender}"></td>
-				<td th:text="${user.country}"></td>
-				<td th:text="${user.email}"></td>
-				<td th:text="${user.mobile}"></td>
-				<td th:text="${user.contact}"></td>
-				<td th:text="${#dates.format(user.birthdate, 'dd/MM/yyyy')}"></td>
-				<td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
-				<td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td> -->
+				<td></td>
 			</tr>
 		</tbody>
 	</table>
 
 	<script>
-		 
+	
+	 $(document).ready(function() {		 
+		var editor = $('#users').DataTable({
+				"processing" : true,
+				"serverSide" : true,
+				"responsive": true,
+				"ajax" : {
+					"url" : "findall",
+					"dataSrc":"",
+					"type" : "POST",
+					"dataType" : "json",
+					"contentType" : "application/json",
+					"data" : function(d) {
+						/* console.log("data: ", d); */
+						return JSON.stringify(d);
+					}
+				},
+				 "columns": [
+					 	{"data": "id", "sortable": false},
+			            {"data": "name"},
+			            {"data": "age"},
+			            {"data": "gender"},
+			            {"data": "country", "sortable": false},
+			            {"data": "email", "sortable": false},
+			            {"data": "mobile", "sortable": false},
+			            {"data": "contact", "sortable": false},
+			            {"render":function(data){
+			                return moment(data).format('Do MM YYYY');
+			              }, "sortable": false
+			            },
+			            /* {"data": "birthdate"}, */
+			            {"mRender": function ( data, type, row ) {
+	                        return '<a href="@{/edit/{id}(id=${user.id})}">Edit</a>';},
+	                        "sortable": false
+	                	},
+			            {"mRender": function ( data, type, row ) {
+	                        return '<a href="@{/delete/{id}(id=${user.id})}">Delete</a>';},
+	                	 "sortable": false
+	                	}
+			        ]
+			    });
+	  });
 
-
- $(document).ready(function() {		 
-	var editor = $('#users').DataTable({
-			"processing" : true,
-			"serverSide" : true,
-			"ajax" : {
-				"url" : "findall",
-				"dataSrc":"",
-				"type" : "POST",
-				"dataType" : "json",
-				"contentType" : "application/json",
-				"data" : function(d) {
-					console.log("data: ", d);
-					return JSON.stringify(d);
-				}
-			},
-			 "columns": [
-				 	{"data": "id"},
-		            {"data": "name"},
-		            {"data": "age"},
-		            {"data": "gender"},
-		            {"data": "country"},
-		            {"data": "email"},
-		            {"data": "mobile"},
-		            {"data": "contact"},
-		            {"data": "birthdate"},
-	                {
-	                    data: null,
-	                    className: "center",
-	                    defaultContent: '<a href="">Edit</a> / <a href="" class="editor_remove">Delete</a>'
-	                }
-		            /* {"data": ""} */ 
-		        ]
-		    });
-	 
-	// Delete a record
-	 $('#users').on('click', 'tbody tr', function() {
-		 editor.row(this).remove().draw( false );
-		});
-		  
-		  
-	 
-		// Delete a record
-	 /*    $('#users').on('click', 'a.editor_remove', function (e) {
-	        e.preventDefault();
-	 
-	        editor.remove( $(this).closest('tr'), {
-	            title: 'Delete record',
-	            message: 'Are you sure you wish to remove this record?',
-	            buttons: 'Delete'
-	        } );
-	    } ); */		
-	 }); 
-	 /*  var versionNo = $.fn.dataTable.version;
-		 alert(versionNo); */
-		  //alert(jQuery.fn.jquery);
-	</script>
+</script>
 </body>
 </html>

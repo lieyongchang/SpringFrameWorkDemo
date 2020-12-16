@@ -31,7 +31,8 @@ public class UserRestController {
 	@RequestMapping(value = "findall", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	public Set<User> findAll() {
+
+		// then set my new data as
 		return userInfoService.getUser();
 	}
-
 }
