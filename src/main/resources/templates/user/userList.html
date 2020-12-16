@@ -44,10 +44,11 @@
 
 	<script>
 	
-	 $(document).ready(function() {		 
-		var editor = $('#users').DataTable({
+	 $(document).ready(function() {	
+		
+		var table = $('#users').DataTable({
 				"processing" : true,
-				"serverSide" : true,
+				/* "serverSide" : true, */
 				"responsive": true,
 				"ajax" : {
 					"url" : "findall",
@@ -70,7 +71,7 @@
 			            {"data": "mobile", "sortable": false},
 			            {"data": "contact", "sortable": false},
 			            {"render":function(data){
-			                return moment(data).format('Do MM YYYY');
+			                return moment(data).format('DD/MM/YYYY');
 			              }, "sortable": false
 			            },
 			            /* {"data": "birthdate"}, */
@@ -83,7 +84,23 @@
 	                	 "sortable": false
 	                	}
 			        ]
-			    });
+					
+			    });	
+		
+		
+		/*  table.on('draw', function() {
+			    console.log('draw');
+			  }) */
+		console.log("Before No. of rows: ", table.row().count());
+		// #myInput is a <input type="text"> element
+		 $('input').keyup(function() {
+		   table.search(this.value).draw();
+		   
+		/* 	 table.clear().draw(); */
+			 
+			 console.log("After No. of rows: ", table.row().count());
+		 } );
+		
 	  });
 
 </script>

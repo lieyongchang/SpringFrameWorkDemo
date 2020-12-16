@@ -21,6 +21,7 @@ import com.service.UserInfoService;
 public class UserRestController {
 
 	private final UserInfoService userInfoService;
+	private static String DATE_FORMAT = "yyyy-MM-dd";
 
 	@Autowired
 	public UserRestController(UserInfoService userInfoService) {
@@ -32,7 +33,20 @@ public class UserRestController {
 	@ResponseBody
 	public Set<User> findAll() {
 
+		/*
+		 * // the date format SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+		 * 
+		 * // this contain the raw data from my database Set<User> user =
+		 * userInfoService.getUser();
+		 * 
+		 * // 1) iterate through the data to change my date format // 2) then set my
+		 * delete button with the hreft // 3) then set my edit button with the hreft for
+		 * (User i : user) { // format my date here sdf.format(i.getBirthdate()); }
+		 * 
+		 */
+
 		// then set my new data as
 		return userInfoService.getUser();
 	}
+
 }
