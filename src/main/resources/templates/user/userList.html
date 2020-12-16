@@ -76,11 +76,11 @@
 			            },
 			            /* {"data": "birthdate"}, */
 			            {"mRender": function ( data, type, row ) {
-	                        return '<a href="@{/edit/{id}(id=${user.id})}">Edit</a>';},
+			            	  return data = '<a href=/edit/"'  +  parseInt(row.id) +'">Edit</a>'},
 	                        "sortable": false
 	                	},
 			            {"mRender": function ( data, type, row ) {
-	                        return '<a href="@{/delete/{id}(id=${user.id})}">Delete</a>';},
+	                        return '<a href="@{/delete/{id}(id=${user.id})}">Delete</a>'},
 	                	 "sortable": false
 	                	}
 			        ]
