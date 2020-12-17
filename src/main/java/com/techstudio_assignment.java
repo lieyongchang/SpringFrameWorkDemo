@@ -19,11 +19,15 @@ package com;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(proxyBeanMethods = false)
-public class TechstudioAssignment {
+@SpringBootApplication(proxyBeanMethods = false, exclude = {
+        org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,
+        org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration.class })
+
+//@SpringBootApplication(proxyBeanMethods = false)
+public class techstudio_assignment {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TechstudioAssignment.class, args);
+		SpringApplication.run(techstudio_assignment.class, args);
 	}
 
 }
