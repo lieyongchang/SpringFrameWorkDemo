@@ -119,10 +119,14 @@
 				<span>Home</span>
 			</li>
 	
-			<li th:replace="::menuItem ('/userList','users','user page','th-list','User')">
+			<!-- <li th:replace="::menuItem ('/userList','users','user page','th-list','User')">
 				<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 				<span>User</span>
-			</li>	
+			</li> -->
+			<li th:replace="::menuItem ('/login','users','user page','th-list','User')">
+				<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+				<span>User</span>
+			</li>		
 			<li
 				th:replace="::menuItem ('/oups','error','trigger a RuntimeException to see how it is handled','warning-sign','Error')">
 				<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
