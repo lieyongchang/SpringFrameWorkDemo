@@ -2,7 +2,8 @@
 <html xmlns:th="https://www.thymeleaf.org"
 	  th:replace="~{fragments/layout :: layout (~{::body},'users')}"
 	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
-	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	 > 
+	 <!-- xmlns:sec="http://www.thymeleaf.org/extras/spring-security" -->
 <body>
 	<!-- <div th:insert="fragments/loginfooterv :: loginfooter"></div> -->
 	<img src="../static/resources/images/companylogo.png"
@@ -11,14 +12,14 @@
 	
 	
 	<!-- This is the part where i say this is admin page -->
-	 <div class="starter-template"  sec:authorize="hasRole('ADMIN')">
+	 <div class="starter-template"  sec:authorize="hasRole('ROLE_ADMIN')">
 
     </div>
     
 
 	<div sec:authentication="name">
 	    The value of the "name" property of the authentication object should appear here.
-	</div>
+	</div> 
 	
 	<!--  -->
 	
