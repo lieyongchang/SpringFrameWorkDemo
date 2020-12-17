@@ -47,6 +47,10 @@
 	 $(document).ready(function() {	
 		
 		var table = $('#users').DataTable({
+			 	"dom": 'Bfrtip',
+			 	"buttons": [
+			        'copy', 'csv','excel', 'pdf'
+			    ],
 				"processing" : true,
 				/* "serverSide" : true, */
 				"responsive": true,
@@ -81,7 +85,7 @@
 	                        "sortable": false
 	                	},
 			            {"mRender": function ( data, type, row ) {
-	                        return '<a href="@{/delete/{id}(id=${user.id})}">Delete</a>'},
+	                        return '<a href=/delete/'  + row.id +'>Delete</a>'},
 	                	 "sortable": false
 	                	}
 			        ]
