@@ -120,9 +120,7 @@
 			style="position: absolute; width: 100%; line-height: 40px; text-align: center; bottom: 0;">
 			 Copyright &copy; <script>document.write(new Date().getFullYear())</script> PretendCo.
 			  <span sec:authorize="isAuthenticated()">
-                | Logged user: <span sec:authentication="name"></span> |
-                Roles: <span sec:authentication="principal.authorities"></span> |
-                <a th:href="@{/logout}">Sign Out</a>
+                <a th:href="@{/login}">Sign Out</a>
             </span>
 			<!-- <a th:href="@{/logout}">| Sign Out</a> -->
 		</div>			 
