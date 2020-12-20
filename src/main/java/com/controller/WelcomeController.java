@@ -57,7 +57,7 @@ class WelcomeController {
 	@GetMapping("/")
 	public String welcome(Model model) {
 
-		User user = new User(null, 0, (GENDER) null, null, null, 0, null, null);
+		User user = new User(null, 0, (GENDER) null, null, null, 0, null, null, null);
 		model.addAttribute("user", user);
 
 		return "welcome";

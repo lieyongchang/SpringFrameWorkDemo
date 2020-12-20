@@ -66,6 +66,13 @@
         	</div>
 		    </div>
 		    
+		    <!-- formFields: messageText -->
+			<div>
+			<label>Feedback:</label>
+			<textarea id="input" class="comment form-control" rows="5"
+				maxlength="200" onkeyup="DiaplyNumberOfCharacterLeft()" th:field="*{message}"></textarea>
+			<small id="output" class="textarea-feedback"></small>
+			</div>
 		    
 	 		<!-- <input type="button" style="z-index: 1; position:relative;" value="Submit" id="test"  onclick="myFunction()"> -->
 	 		<input type="submit" style="z-index: 1; position:relative;" value="Submit">
@@ -76,6 +83,29 @@
 	</div>
 	<!-- Feedback form -->
 	</div>
+	<script>
+	 	// function to display the max character limit and 
+	 	// how many characters left
+		var inputMax = document.getElementById("input").maxLength;
+		var output = document.getElementById("output");
+		
+		output.innerHTML = `${inputMax} Character limit`;
+
+		function DiaplyNumberOfCharacterLeft() {
+			var input = document.getElementById("input");
+			var textLength = input.value.length;
+			
+			output.innerHTML = `${textLength} Character limit`;
+			
+			
+			var textRemaining = inputMax - textLength;
+			if (textRemaining === 1) {
+				output.innerHTML = `${textRemaining} Character limit`;
+			} else {
+				output.innerHTML = `${textRemaining} Characters left`;
+			}
+		}
+	</script>
 	 <div th:insert="fragments/footer :: footer"></div>
 </body>
 

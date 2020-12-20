@@ -55,6 +55,16 @@ public class User {
 	@Column(name = "DOB")
 	private Date birthdate;
 
+	private String message;
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 	public Date getBirthdate() {
 		return birthdate;
 	}
@@ -131,7 +141,7 @@ public class User {
 	}
 
 	public User(String name, Integer age, GENDER gender, String country, String email, Integer mobile, String contact,
-			Date birthdate) {
+			Date birthdate, String message) {
 		super();
 		this.name = name;
 		this.age = age;
@@ -141,6 +151,7 @@ public class User {
 		this.mobile = mobile;
 		this.contact = contact;
 		this.birthdate = birthdate;
+		this.message = message;
 	}
 
 }

@@ -5,9 +5,9 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -32,7 +32,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		// @formatter:off
 		http.csrf().disable()
 		    .authorizeRequests()
-		    /*.antMatchers().hasRole("ADMIN")*/
+		    .antMatchers().hasRole("ADMIN")
 			.antMatchers("/","/userList/**")
 			.permitAll().anyRequest().authenticated()
 			.and()
@@ -47,13 +47,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 						System.out.println("session: " +  request.getSession());
 						request.getSession().setMaxInactiveInterval(60);
 						
-						HttpSession ss = request.getSession();
-						ss.setMaxInactiveInterval(60); 
 	                    System.out.print("session expired");
 						
 					}
                 })
-				.loginProcessingUrl("/userList").permitAll()
+				/*.loginProcessingUrl("/userList").permitAll()*/
 				.and()
 				.logout();
 
@@ -61,5 +59,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	}
 	
+	// In-memory authentication to authenticate the user i.e. the user credentials are stored in the memory.
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.inMemoryAuthentication().withUser("guest").password("{noop}guest").roles("USER");
+		auth.inMemoryAuthentication().withUser("admin").password("{noop}admin").roles("ADMIN");
+	}
 
 }
