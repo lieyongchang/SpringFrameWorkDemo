@@ -15,16 +15,10 @@ public class SpringSecurityController {
 		// return "user/userList";
 		// }
 		return "login";
-
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String successPage(/* Model model, HttpServletRequest request */) {
-
-		// if (request.isUserInRole("ROLE_ADMIN")) {
-		// redirect to indexAdmin.html page
-		// return "user/userList";
-		// }
+	public String successPage() {
 		return "/user/userList";
 
 	}

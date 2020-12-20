@@ -1,12 +1,22 @@
 package com.config;
 
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import java.io.IOException;
 
-@Configurable
-//@Configuration
-//@EnableWebSecurity
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+//@Configurable
+@Configuration
+@EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	// roles admin allow to access /admin/**
@@ -20,17 +30,36 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 //		http.formLogin().defaultSuccessUrl("/usersList", true);
 
 		// @formatter:off
-		http.authorizeRequests()
-			.antMatchers("/", "/user/userList/*").permitAll().anyRequest().authenticated()
+		http.csrf().disable()
+		    .authorizeRequests()
+		    /*.antMatchers().hasRole("ADMIN")*/
+			.antMatchers("/","/userList/**")
+			.permitAll().anyRequest().authenticated()
 			.and()
 			.formLogin()
-				.loginPage("/login")
-				.defaultSuccessUrl("/usersList", true).permitAll()
-					.and()
-				.logout().permitAll();
+				.loginPage("/login").permitAll()
+				.defaultSuccessUrl("/usersList", true)
+					.successHandler(new AuthenticationSuccessHandler() {
+					@Override
+					public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+							Authentication authentication) throws IOException, ServletException {
+						System.out.println("enter here: ");
+						System.out.println("session: " +  request.getSession());
+						request.getSession().setMaxInactiveInterval(60);
+						
+						HttpSession ss = request.getSession();
+						ss.setMaxInactiveInterval(60); 
+	                    System.out.print("session expired");
+						
+					}
+                })
+				.loginProcessingUrl("/userList").permitAll()
+				.and()
+				.logout();
 
-		http.csrf().disable();
 		http.headers().frameOptions().disable();
 
 	}
+	
+
 }

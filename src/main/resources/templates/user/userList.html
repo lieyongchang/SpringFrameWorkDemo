@@ -12,7 +12,7 @@
 	
 	
 	<!-- This is the part where i say this is admin page -->
-	 <div class="starter-template"  sec:authorize="hasRole('ROLE_ADMIN')">
+ 	 <!-- <div class="starter-template"  sec:authorize="hasRole('ROLE_ADMIN')">
 
     </div>
     
@@ -20,8 +20,8 @@
 	<div sec:authentication="name">
 	    The value of the "name" property of the authentication object should appear here.
 	</div> 
-	
-	<!--  -->
+ -->
+
 	
 	<table id="users" class="table table-bordered table-responsive "
 		style="width: 100%">
@@ -119,9 +119,8 @@
         <div id="footer"
 			style="position: absolute; width: 100%; line-height: 40px; text-align: center; bottom: 0;">
 			 Copyright &copy; <script>document.write(new Date().getFullYear())</script> PretendCo.
-			  <span sec:authorize="isAuthenticated()">
-                <a th:href="@{/login}">Sign Out</a>
-            </span>
+			 <a th:href="@{/logout}">Sign Out</a>
+			 <!--  <span sec:authorize="isAuthenticated()"> </span> -->
 			<!-- <a th:href="@{/logout}">| Sign Out</a> -->
 		</div>			 
     </footer>
