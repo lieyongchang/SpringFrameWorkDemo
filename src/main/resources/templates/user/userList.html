@@ -9,7 +9,7 @@
 	<img src="../static/resources/images/companylogo.png"
 		th:src="@{/resources/images/companylogo.png}" />
 	<h2>User</h2>
-	
+	<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!
 	
 	<!-- This is the part where i say this is admin page -->
  	 <!-- <div class="starter-template"  sec:authorize="hasRole('ROLE_ADMIN')">

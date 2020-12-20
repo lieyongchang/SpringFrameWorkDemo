@@ -17,9 +17,9 @@ public class SpringSecurityController {
 		return "login";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String successPage() {
-		return "/user/userList";
-
-	}
+//	@RequestMapping(value = "/login", method = RequestMethod.POST)
+//	public String successPage() {
+//		return "/user/userList";
+//
+//	}
 }
