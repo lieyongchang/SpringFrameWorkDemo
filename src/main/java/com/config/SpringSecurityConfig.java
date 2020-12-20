@@ -32,8 +32,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		// @formatter:off
 		http.csrf().disable()
 		    .authorizeRequests()
-		    .antMatchers().hasRole("ADMIN")
-			.antMatchers("/","/userList/**")
+		    .antMatchers("/userList/**").hasRole("ADMIN")
+		    .antMatchers("/login*").permitAll()
+			.antMatchers("/","/userList")
 			.permitAll().anyRequest().authenticated()
 			.and()
 			.formLogin()
@@ -51,7 +52,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 						
 					}
                 })
-				/*.loginProcessingUrl("/userList").permitAll()*/
+//				.loginProcessingUrl("/userList").permitAll()
 				.and()
 				.logout();
 
@@ -66,4 +67,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.inMemoryAuthentication().withUser("admin").password("{noop}admin").roles("ADMIN");
 	}
 
+/*	@Bean 
+	public PasswordEncoder passwordEncoder() { 
+	    return new BCryptPasswordEncoder(); 
+	}*/
 }

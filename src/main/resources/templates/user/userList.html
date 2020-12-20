@@ -36,12 +36,14 @@
 				<th>Mobile</th>
 				<th>Contact</th>
 				<th>Birthdate</th>
+				<th>Feedback</th>
 				<th></th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			 <tr>
+				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -88,11 +90,17 @@
 			            {"data": "email", "sortable": false},
 			            {"data": "mobile", "sortable": false},
 			            {"data": "contact", "sortable": false},
+			            /* {"data": "birthdate"}, */
 			            {"render":function(data){
 			                return moment(data).format('DD/MM/YYYY');
 			              }, "sortable": false
 			            },
-			            /* {"data": "birthdate"}, */
+			            /* {"Mesage"}, */
+			            {"data": "message", 
+			            	     "sortable": false,
+			            		 "render": function(data, type, row){
+			            	 			return '<a href=/edit/' + row.id +'><i class="fa fa-file-text-o" aria-hidden="true"></i></a>'}
+			            },
 			            {"mRender": function ( data, type, row ) {
 			            	/*   return data = '<a href=/edit/'  + row.id +'>Edit</a>'}, */
 			            	  return '<a href=/edit/'  + row.id +'>Edit</a>'},
