@@ -5,15 +5,30 @@ th:replace="~{fragments/layout :: layout (~{::body},'user')}">
     <title>Login page</title>
   </head>
   <body>
-    <h1>Login page</h1>
-    <p th:if="${loginError}" class="error">Wrong user or password</p>
+    <h1 style="text-align: center;">Login page</h1>
+    <!-- <p th:if="${loginError}" class="error">Wrong user or password</p> -->
     <!-- <form th:action="@{/userList}" method="post"> -->
-    <form th:action="@{/login}" method="post">
-      <label for="username">Username</label>:
-      <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
-      <label for="password">Password</label>:
-      <input type="password" id="password" name="password" /> <br />
-      <input type="submit" value="Log in" />
-    </form>
+    <div style="text-align: center">
+	    <form th:action="@{/login}" method="post" style="display: inline-block">
+		    <table>
+		    	<tr>
+		    		<td>
+		    			<label for="username">Username:
+		    				<input type="text" id="username" name="username" autofocus="autofocus" />
+		    			</label> 
+		    			<br />
+			      	</td>
+		    	</tr>
+		        <tr>
+		      		<td>
+		      			<label for="password">Password:
+		      				<input type="password" id="password" name="password" /> <br />
+		      				<input type="submit" value="Sign in" />
+		      			</label>
+		      		</td>
+		      	</tr>  
+		      </table>
+	    </form>
+    </div>
   </body>
 </html>
