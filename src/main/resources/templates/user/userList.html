@@ -60,9 +60,10 @@
 	</table>
 	<script>
 	
+	// this is the redirect function
 	(function() {
 
-	    const idleDurationSecs = 60;    // X number of seconds
+	    const idleDurationSecs = 30;    // X number of seconds
 	    const redirectUrl = '/logout';  // Redirect idle users to this URL
 	    let idleTimeout; // variable to hold the timeout, do not modify
 
@@ -73,7 +74,7 @@
 
 	        // Set a new idle timeout to load the redirectUrl after idleDurationSecs
 	        idleTimeout = setTimeout(() => location.href = redirectUrl, idleDurationSecs * 1000);
-	        
+
 	    };
 
 	    // Init on page load
@@ -86,7 +87,9 @@
 
 	})();
 	
+	 
 	
+	// this is logic that renders all the information on the table
 	 $(document).ready(function() {	
 		
 		var table = $('#users').DataTable({

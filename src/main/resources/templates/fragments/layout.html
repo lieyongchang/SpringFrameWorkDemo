@@ -80,6 +80,8 @@
 	width:600px;
 	
 	}
+
+	
 </style>
 </head>
 
@@ -170,6 +172,12 @@
 <script>
 
 $('.input-group.date').datetimepicker({format : "DD/MM/YYYY"});
+
+
+$(window).bind('beforeunload', function(){
+alert("test");
+});
+
 
 /* $('.input-group.date').datepicker({
     format: "yyyy/mm/dd",

@@ -1,6 +1,5 @@
 package com.config;
 
-import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.http.HttpSessionEvent;
@@ -34,7 +33,7 @@ public class SessionListenerWithMetrics implements HttpSessionListener {
 	}
 
 	public void sessionDestroyed(final HttpSessionEvent event) {
-		System.out.println("session Destroy: " + new Date());
+//		System.out.println("session Destroy: " + new Date());
 		activeSessions.decrementAndGet();
 
 	}
