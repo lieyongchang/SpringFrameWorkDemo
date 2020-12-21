@@ -10,23 +10,30 @@ th:replace="~{fragments/layout :: layout (~{::body},'user')}">
     <!-- <form th:action="@{/userList}" method="post"> -->
     <div style="text-align: center">
 	    <form th:action="@{/login}" method="post" style="display: inline-block">
+	    	<div th:if="${param.error}" class="alert alert-error">    
+                    Invalid username and password.
+             </div>
+             <div th:if="${param.logout}" class="alert alert-success"> 
+                   You have been logged out.
+              </div>
 		    <table>
 		    	<tr>
 		    		<td>
 		    			<label for="username">Username:
 		    				<input type="text" id="username" name="username" autofocus="autofocus" />
-		    			</label> 
-		    			<br />
+		    			</label>
 			      	</td>
 		    	</tr>
 		        <tr>
 		      		<td>
 		      			<label for="password">Password:
-		      				<input type="password" id="password" name="password" /> <br />
-		      				<input type="submit" value="Sign in" />
+		      				<input type="password" id="password" name="password" />	
 		      			</label>
 		      		</td>
-		      	</tr>  
+		      	</tr>
+		      	<tr>
+		      		<td><input type="submit" value="Sign in" /></td>
+		      	</tr> 
 		      </table>
 	    </form>
     </div>
