@@ -74,14 +74,28 @@
 		    <!-- formFields: messageText -->
 			<div>
 			<label>Feedback:</label>
-			<textarea id="input" class="comment form-control" rows="5"
-				maxlength="200" onkeyup="DiaplyNumberOfCharacterLeft()" th:field="*{message}"></textarea>
+			<textarea 
+				id="input" 
+				class="comment form-control" rows="5"
+				maxlength="200" 
+				onkeyup="DiaplyNumberOfCharacterLeft()" 
+				th:field="*{message}"
+				style=" vertical-align: top;">
+			</textarea>
 			<small id="output" class="textarea-feedback"></small>
 			</div>
 		    
-	 		<!-- <input type="button" style="z-index: 1; position:relative;" value="Submit" id="test"  onclick="myFunction()"> -->
-	 		<input type="submit" style="z-index: 1; position:relative;" value="Submit">
-	 		<input type="reset" style="z-index: 1; position:relative;" value="Reset">
+	 		<!-- submit / reset buttons -->
+	 		<div style="width:100%; text-align:center;">
+	 			<div style="display:inline-block">
+	 				<input type="submit" style="z-index: 1; position:relative;" value="Submit">
+	 			</div>
+		 		<div style="display:inline-block">
+		 			<input type="reset" style="z-index: 1; position:relative;" value="Reset">
+		 		</div>
+		 		
+	 		</div>
+	 		
 	      
 	      
 	   </form>

@@ -6,8 +6,6 @@ th:replace="~{fragments/layout :: layout (~{::body},'user')}">
   </head>
   <body>
     <h1 style="text-align: center;">Login page</h1>
-    <!-- <p th:if="${loginError}" class="error">Wrong user or password</p> -->
-    <!-- <form th:action="@{/userList}" method="post"> -->
     <div style="text-align: center">
 	    <form th:action="@{/login}" method="post" style="display: inline-block">
 	    	<div th:if="${param.error}" class="alert alert-error">    
