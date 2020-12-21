@@ -16,10 +16,10 @@ public class SpringSecurityController {
 		// }
 		return "login";
 	}
-
-//	@RequestMapping(value = "/login", method = RequestMethod.POST)
+//
+//	@RequestMapping(value = "/userList", method = RequestMethod.POST)
 //	public String successPage() {
-//		return "/user/userList";
+//		return "login";
 //
 //	}
 }

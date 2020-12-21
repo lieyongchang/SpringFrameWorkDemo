@@ -39,6 +39,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 //		    .antMatchers("/userList/**").hasRole("ADMIN")
 		    .antMatchers("/login*").permitAll()
 			.antMatchers("/","/userList")
+			
 			.permitAll().anyRequest().authenticated()
 			.and()
 			.formLogin()
@@ -48,19 +49,27 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 					@Override
 					public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 							Authentication authentication) throws IOException, ServletException {
-						System.out.println("enter here: ");
-						System.out.println("session: " +  request.getSession());
+						//System.out.println("enter here: ");
+						//System.out.println("session: " +  request.getSession());
 						response.sendRedirect("/userList");
-
-						request.getSession().setMaxInactiveInterval(60);
+						//System.out.print("session: " + request.getSession().getAttributeNames());
+//						request.getSession().setMaxInactiveInterval(30);
 						
-	                    System.out.print("session expired");
+	                   // System.out.print("session expired");
 						
 					}
                 })
 //				.loginProcessingUrl("/userList").permitAll()
 				.and()
-				.logout().permitAll();
+				.logout()
+					.deleteCookies("JSESSIONID")
+					.permitAll()
+				.and()
+				.sessionManagement()
+					.invalidSessionUrl("/")
+					.maximumSessions(1)
+						.expiredUrl("/login");
+					
 
 		http.headers().frameOptions().disable();
 
@@ -85,4 +94,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		return new InMemoryUserDetailsManager(user);
 	}
+	
+	
 }

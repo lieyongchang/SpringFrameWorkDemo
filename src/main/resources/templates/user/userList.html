@@ -9,8 +9,8 @@
 	<img src="../static/resources/images/companylogo.png"
 		th:src="@{/resources/images/companylogo.png}" />
 	<h2>User</h2>
-	<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!
-	
+	<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+	<!-- <sec:logout logout-success-url="/logout" invalidate-session="false" delete-cookies="JESSIONID" /> -->
 	<!-- This is the part where i say this is admin page -->
  	 <!-- <div class="starter-template"  sec:authorize="hasRole('ROLE_ADMIN')">
 
@@ -59,6 +59,33 @@
 		</tbody>
 	</table>
 	<script>
+	
+	(function() {
+
+	    const idleDurationSecs = 60;    // X number of seconds
+	    const redirectUrl = '/logout';  // Redirect idle users to this URL
+	    let idleTimeout; // variable to hold the timeout, do not modify
+
+	    const resetIdleTimeout = function() {
+
+	        // Clears the existing timeout
+	        if(idleTimeout) clearTimeout(idleTimeout);
+
+	        // Set a new idle timeout to load the redirectUrl after idleDurationSecs
+	        idleTimeout = setTimeout(() => location.href = redirectUrl, idleDurationSecs * 1000);
+	        
+	    };
+
+	    // Init on page load
+	    resetIdleTimeout();
+
+	    // Reset the idle timeout on any of the events listed below
+	    ['click', 'touchstart', 'mousemove'].forEach(evt => 
+	        document.addEventListener(evt, resetIdleTimeout, false)
+	    );
+
+	})();
+	
 	
 	 $(document).ready(function() {	
 		
