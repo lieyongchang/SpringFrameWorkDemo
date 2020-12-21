@@ -31,7 +31,7 @@
 	 
 	        <div> 
 	        <label>Gender:</label>
-	        <select class="form-control" id="gender" th:field="*{gender}">
+	        <select class="form-control" id="gender" th:field="*{gender}" style="width:42%">
 			    <option th:each="gender : ${T(com.model.User.GENDER).values()}"
                 th:value="${gender}"
                 th:text="${gender}"></option>
@@ -53,8 +53,8 @@
 	     	
 	     	<div> 
 	        <label>Contact:</label>
-	        <input type="radio" th:field="*{contact}" value="Mobile" />Mobile
-	        <input type="radio" th:field="*{contact}" value="Email"  />Email
+	        <input type="radio" th:field="*{contact}" value="Mobile" />  Mobile
+	        <input type="radio" th:field="*{contact}" value="Email"  />  Email
 	        </div>
 	        
 	           
