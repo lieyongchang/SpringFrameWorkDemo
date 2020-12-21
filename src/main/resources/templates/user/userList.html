@@ -60,34 +60,25 @@
 	</table>
 	<script>
 	
-	// this is the redirect function
-	(function() {
-
-	    const idleDurationSecs = 30;    // X number of seconds
-	    const redirectUrl = '/logout';  // Redirect idle users to this URL
-	    let idleTimeout; // variable to hold the timeout, do not modify
-
-	    const resetIdleTimeout = function() {
-
-	        // Clears the existing timeout
-	        if(idleTimeout) clearTimeout(idleTimeout);
-
-	        // Set a new idle timeout to load the redirectUrl after idleDurationSecs
-	        idleTimeout = setTimeout(() => location.href = redirectUrl, idleDurationSecs * 1000);
-
-	    };
-
-	    // Init on page load
-	    resetIdleTimeout();
-
-	    // Reset the idle timeout on any of the events listed below
-	    ['click', 'touchstart', 'mousemove'].forEach(evt => 
-	        document.addEventListener(evt, resetIdleTimeout, false)
-	    );
-
-	})();
 	
-	 
+	var IdealTimeOut = 60; //10 seconds
+    var idleSecondsTimer = null;
+    var idleSecondsCounter = 0;
+    const redirectUrl = '/logout';  // Redirect idle users to this URL
+    document.onclick = function () { idleSecondsCounter = 0; };
+    document.onmousemove = function () { idleSecondsCounter = 0; };
+    document.onkeypress = function () { idleSecondsCounter = 0; };
+    idleSecondsTimer = window.setInterval(CheckIdleTime, 1000);
+
+    function CheckIdleTime() {
+        idleSecondsCounter++;
+        if (idleSecondsCounter >= IdealTimeOut) {
+            window.clearInterval(idleSecondsTimer);
+            alert("Your Session has expired. Please login again.");
+          //  window.location = "https://www.aspsnippets.com/";
+            location.href = redirectUrl;
+        }
+    }	 
 	
 	// this is logic that renders all the information on the table
 	 $(document).ready(function() {	
