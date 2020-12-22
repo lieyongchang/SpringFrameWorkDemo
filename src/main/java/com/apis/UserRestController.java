@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.model.User;
+import com.model.User.GENDER;
+import com.repository.UserRepository;
 import com.service.UserInfoService;
 
 import Validator.UserValidator;
@@ -25,11 +27,13 @@ import Validator.UserValidator;
 public class UserRestController {
 
 	private final UserInfoService userInfoService;
+	private final UserRepository userRepository;
 
 	@Autowired
-	public UserRestController(UserInfoService userInfoService) {
+	public UserRestController(UserInfoService userInfoService, UserRepository userRepository) {
 		super();
 		this.userInfoService = userInfoService;
+		this.userRepository = userRepository;
 	}
 
 	@RequestMapping(value = "findall", method = RequestMethod.POST, produces = "application/json")
@@ -41,12 +45,12 @@ public class UserRestController {
 
 	@RequestMapping(value = "/yc")
 	@ResponseBody
-	public String addUser(HttpServletRequest request) {
+	public void createServlet(HttpServletRequest request) {
 		// fetcch the dats
 		//@formatter:off
 		String name    = request.getParameter("name");
 		Integer age    = Integer.parseInt(request.getParameter("age"));
-//		String gender =  request.getParameter("gender");
+		String gender =  request.getParameter("gender");
 		Integer mobile = Integer.parseInt(request.getParameter("mobile"));
 		String email   = request.getParameter("email");
 		String message = request.getParameter("message");
@@ -55,7 +59,7 @@ public class UserRestController {
 		User user = new User();
 		user.setName(name);
 		user.setAge(age);
-//		user.setGender(GENDER.valueOf(gender));
+		user.setGender(GENDER.valueOf(gender));
 		user.setMobile(mobile);
 		user.setEmail(email);
 		user.setMessage(message);
@@ -73,8 +77,10 @@ public class UserRestController {
 		userValidator.validateServletRequest(user);
 
 //		System.out.println("inn here");
-		System.out.println("yc name: " + name);
-		return "string";
+//		System.out.println("yc name: " + name);
+		
+		userRepository.save(user);
+		//return "string";
 	}
 
 }

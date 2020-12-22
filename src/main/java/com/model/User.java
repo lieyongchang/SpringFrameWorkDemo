@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -55,6 +56,8 @@ public class User {
 	@Column(name = "DOB")
 	private Date birthdate;
 
+	@Lob
+	@Column(name = "message", length = 512)
 	private String message;
 
 	public String getMessage() {
@@ -141,7 +144,7 @@ public class User {
 	}
 
 	public User(String name, Integer age, GENDER gender, String country, String email, Integer mobile, String contact,
-			Date birthdate, String message) {
+	        Date birthdate, String message) {
 		super();
 		this.name = name;
 		this.age = age;
