@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -25,6 +27,9 @@ public class UserInfoService {
 
 	private UserRepository userRepository;
 
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
 	public UserInfoService(UserRepository userRepository) {
 		super();
 		this.userRepository = userRepository;
@@ -34,7 +39,7 @@ public class UserInfoService {
 	 * @param user
 	 * @param bindingResult
 	 */
-	public void addUserInfo(User user, BindingResult bindingResult) {
+	public String addUserInfo(User user, BindingResult bindingResult) {
 
 		if (user != null) {
 			users.add(user);
@@ -51,8 +56,16 @@ public class UserInfoService {
 		UserValidator userValidator = new UserValidator();
 		userValidator.validate(user, bindingResult);
 
+//		System.out.println("yc: " + isEmailExist(user.getEmail()));
+		if (isEmailExist(user.getEmail())) {
+			System.out.println("got duplicate email");
+		} else {
+			userRepository.save(user);
+			return "register_success";
+		}
+
 		// This will push to pretendco_yc
-		userRepository.save(user);
+		return "Duplicate email";
 	}
 
 	/**
@@ -98,5 +111,14 @@ public class UserInfoService {
 	 */
 	public void deleteById(Long idToDelete) {
 		userRepository.deleteById(idToDelete);
+	}
+
+	/**
+	 * @param email
+	 */
+	public boolean isEmailExist(String email) {
+		String sql = "SELECT count(*) FROM user WHERE email=?";
+		int count = jdbcTemplate.queryForObject(sql, new Object[] { email }, Integer.class);
+		return count > 0;
 	}
 }
