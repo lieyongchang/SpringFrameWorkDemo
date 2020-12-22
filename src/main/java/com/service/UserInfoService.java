@@ -57,15 +57,15 @@ public class UserInfoService {
 		userValidator.validate(user, bindingResult);
 
 //		System.out.println("yc: " + isEmailExist(user.getEmail()));
-		if (isEmailExist(user.getEmail())) {
-			System.out.println("got duplicate email");
+		if (isEmailExist(user.getEmail()) || isMobileExist(user.getMobile())) {
+			System.out.println("got duplicate email/mobile");
 		} else {
 			userRepository.save(user);
 			return "register_success";
 		}
 
 		// This will push to pretendco_yc
-		return "Duplicate email";
+		return "Duplicate email/mobile number";
 	}
 
 	/**
@@ -119,6 +119,15 @@ public class UserInfoService {
 	public boolean isEmailExist(String email) {
 		String sql = "SELECT count(*) FROM user WHERE email=?";
 		int count = jdbcTemplate.queryForObject(sql, new Object[] { email }, Integer.class);
+		return count > 0;
+	}
+
+	/**
+	 * @param email
+	 */
+	public boolean isMobileExist(Integer mobile) {
+		String sql = "SELECT count(*) FROM user WHERE mobile=?";
+		int count = jdbcTemplate.queryForObject(sql, new Object[] { mobile }, Integer.class);
 		return count > 0;
 	}
 }
