@@ -86,7 +86,32 @@
 		var table = $('#users').DataTable({
 			 	"dom": 'Bfrtip',
 			 	"buttons": [
-			        'copy', 'csv','excel', 'pdf'
+			        'copy',
+			        {
+		                extend : 'csv',
+		                title : function() {
+		                    return "techstudio_assignment";
+		                },
+		                text : '<i class=fas fa-file-csv aria-hidden="true"> csv</i>',
+		            } ,
+			        {
+		                extend : 'excel',
+		                title : function() {
+		                    return "techstudio_assignment";
+		                },
+		                text : '<i class="fa fa-file-excel-o" aria-hidden="true"> Excel</i>',
+		            } ,
+			        
+			        {
+		                extend : 'pdfHtml5',
+		                title : function() {
+		                    return "techstudi_assignment";
+		                },
+		                orientation : 'landscape',
+		                pageSize : 'LEGAL',
+		                text : '<i class="fa fa-file-pdf-o"> PDF</i>',
+		                titleAttr : 'PDF'
+		            } 
 			    ],
 				"processing" : true,
 				/* "serverSide" : true, */
@@ -120,11 +145,11 @@
 			            {"data": "message", 
 			            	     "sortable": false,
 			            		 "render": function(data, type, row){
-			            	 			return '<a href=/edit/' + row.id +'><i class="fa fa-file-text-o" aria-hidden="true" style="position:absolute;left:84.5%"></i></a>'}
+			            	 			return '<a target="_blank" href=/edit/' + row.id +'><i class="fa fa-file-text-o" aria-hidden="true" style="position:absolute;left:84.5%"></i></a>'}
 			            },
 			            {"mRender": function ( data, type, row ) {
 			            	/*   return data = '<a href=/edit/'  + row.id +'>Edit</a>'}, */
-			            	  return '<a href=/edit/'  + row.id +'>Edit</a>'},
+			            	  return '<a target="_blank" href=/edit/'  + row.id +'>Edit</a>'},
 	                        "sortable": false
 	                	},
 			            {"mRender": function ( data, type, row ) {
