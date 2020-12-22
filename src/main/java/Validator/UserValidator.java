@@ -14,6 +14,7 @@ public class UserValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
+
 		User user = (User) target;
 
 		if (user.getContact().equals("0")) {
@@ -30,6 +31,12 @@ public class UserValidator implements Validator {
 		} else {
 			errors.rejectValue("name", "your_error_code");
 		}
+	}
+	
+	// this is to validate my servlet request
+	public void validateServletRequest(Object target) {
+		User user = (User) target;
+		
 	}
 
 }
