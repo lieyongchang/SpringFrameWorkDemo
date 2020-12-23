@@ -45,7 +45,7 @@ public class UserRestController {
 
 	@RequestMapping(value = "/yc")
 	@ResponseBody
-	public void createServlet(HttpServletRequest request) {
+	public String createServlet(HttpServletRequest request) {
 		// fetcch the dats
 		//@formatter:off
 		String name    = request.getParameter("name");
@@ -64,23 +64,11 @@ public class UserRestController {
 		user.setEmail(email);
 		user.setMessage(message);
 		
-		
-		// Condition to check if the contact field matches with the Email/Mobile field
-//		if (user.getContact() != null && user.getContact().equalsIgnoreCase("Email")) {
-//			user.setContact(user.getEmail());
-//
-//		} else if (user.getContact().equalsIgnoreCase("Mobile") && user.getMobile() != 0) {
-//			user.setContact(Integer.toString(user.getMobile()));
-//		}
-
 		UserValidator userValidator = new UserValidator();
-		userValidator.validateServletRequest(user);
+		return userValidator.validateServletRequest(user, userRepository, userInfoService);
 
-//		System.out.println("inn here");
-//		System.out.println("yc name: " + name);
 		
-		userRepository.save(user);
-		//return "string";
+
 	}
 
 }

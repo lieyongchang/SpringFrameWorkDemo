@@ -4,6 +4,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.model.User;
+import com.repository.UserRepository;
+import com.service.UserInfoService;
 
 public class UserValidator implements Validator {
 
@@ -33,10 +35,28 @@ public class UserValidator implements Validator {
 		}
 	}
 	
-	// this is to validate my servlet request
-	public void validateServletRequest(Object target) {
-		User user = (User) target;
+	
+	/**
+	 * this is to validate my servlet request
+	 * @param target
+	 * @param userRepository
+	 * @param userInfoService
+	 * @return
+	 */
+	public String validateServletRequest(Object target,
+			                           UserRepository userRepository,
+			                           UserInfoService userInfoService  ) {
 		
+		
+		User user = (User) target;
+		if (userInfoService.isEmailExist(user.getEmail()) ||
+			userInfoService.isMobileExist(user.getMobile())) {
+			System.out.println("got duplicate email/mobile");
+			return "Duplicate email/mobile number";
+		} else {
+			userRepository.save(user);
+			return "register_success";
+		}
 	}
 
 }
