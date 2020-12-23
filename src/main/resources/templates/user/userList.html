@@ -8,6 +8,7 @@
 	<!-- <div th:insert="fragments/loginfooterv :: loginfooter"></div> -->
 	<img src="../static/resources/images/companylogo.png"
 		th:src="@{/resources/images/companylogo.png}" />
+		
 	<h2>User</h2>
 	<!-- <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1> -->
 	<!-- <sec:logout logout-success-url="/logout" invalidate-session="false" delete-cookies="JESSIONID" /> -->
@@ -92,14 +93,14 @@
 		                title : function() {
 		                    return "techstudio_assignment";
 		                },
-		                text : '<i class=fas fa-file-csv aria-hidden="true"> csv</i>',
+		                text : '<i class="fas fa-file-csv" aria-hidden="true"> csv</i>',
 		            } ,
 			        {
 		                extend : 'excel',
 		                title : function() {
 		                    return "techstudio_assignment";
 		                },
-		                text : '<i class="fa fa-file-excel-o" aria-hidden="true"> Excel</i>',
+		                text : '<i class="fas fa-file-excel" aria-hidden="true"> Excel</i>',
 		            } ,
 			        
 			        {
@@ -109,7 +110,7 @@
 		                },
 		                orientation : 'landscape',
 		                pageSize : 'LEGAL',
-		                text : '<i class="fa fa-file-pdf-o"> PDF</i>',
+		                text : '<i class="fas fa-file-pdf aria-hidden="true"> PDF</i>',
 		                titleAttr : 'PDF'
 		            } 
 			    ],
