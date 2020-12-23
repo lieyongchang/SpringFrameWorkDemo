@@ -50,7 +50,7 @@ public class UserRestController {
 		//@formatter:off
 		String name    = request.getParameter("name");
 		Integer age    = Integer.parseInt(request.getParameter("age"));
-		String gender =  request.getParameter("gender");
+		String gender =  request.getParameter("gender").toUpperCase();
 		Integer mobile = Integer.parseInt(request.getParameter("mobile"));
 		String email   = request.getParameter("email");
 		String message = request.getParameter("message");
