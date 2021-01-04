@@ -6,10 +6,18 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.model.User;
-import com.repository.UserRepository;
-import com.service.UserInfoService;
 
 public class UserValidator implements Validator {
+
+	private String lastMessage;
+
+	public String getLastMessage() {
+		return lastMessage;
+	}
+
+	public void setLastMessage(String lastMessage) {
+		this.lastMessage = lastMessage;
+	}
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -45,20 +53,45 @@ public class UserValidator implements Validator {
 	 * @param userInfoService
 	 * @return
 	 */
-	public String validateServletRequest(Object target,
-			                           UserRepository userRepository,
-			                           UserInfoService userInfoService  ) {
+	public boolean ValidateInformation(String mobile, String email, String age, String gender) {
 		
+		boolean hasError = false;
 		
-		User user = (User) target;
-		if (userInfoService.isEmailExist(user.getEmail()) ||
-			userInfoService.isMobileExist(user.getMobile())) {
-			System.out.println("got duplicate email/mobile");
-			return "Duplicate email/mobile number";
-		} else {
-			userRepository.save(user);
-			return "register_success";
+		// check to make sure mobile has only numbers
+		if(OnlyNumeric(mobile) & CheckMinimumLength(mobile, 6)) 
+			System.out.println("Mobile correct format");
+		else {
+			hasError = true;
+			setLastMessage("Input only number and minimum 6 numbers");
+		};
+		
+		// check to validate email is the correct format
+		if(!CheckEmailValid(email))
+			System.out.println("Email correct format");
+		else {
+			hasError = true;
+			setLastMessage("Email format is wrong");
 		}
+		
+		// make sure age is only numbers
+		if(OnlyNumeric(age))
+			System.out.println("age Correct format");
+		else {
+			hasError = true;
+			setLastMessage("Input only number in age field");
+		}
+		
+		// gender
+		String newGender = gender.toLowerCase();
+		// gender
+		if(newGender.equals("male") || newGender.equals("female") || newGender.equals("other")) {
+			System.out.println("Gender format correct");
+		}else if(newGender != "male" || newGender != "female" || newGender != "other") {
+			hasError = true;
+			setLastMessage("Input either value: male, female, others");
+			
+		}
+		return hasError;
 	}
 	
 	// return true if input in numeric
@@ -76,5 +109,28 @@ public class UserValidator implements Validator {
 		}
 		return false;
 	}
+	
+	// return true if input not a specific length
+		public boolean CheckLength(String input, int length) {
+			if (input.length() != length) {
+				return true;
+			}
+			return false;
+		}
 
+		// return true if input length more than min
+		public boolean CheckMinimumLength(String input, int min) {
+			if (input.length() >= min) {
+				return true;
+			}
+			return false;
+		}
+
+		// return true if input length less than or equal to max
+		public boolean CheckMaximumLength(String input, int max) {
+			if (input.length() <= max) {
+				return true;
+			}
+			return false;
+		}
 }

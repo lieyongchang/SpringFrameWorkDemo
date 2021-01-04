@@ -52,7 +52,7 @@ public class UserRestController {
 		// fetcch the dats
 		//@formatter:off
 		String name    = request.getParameter("name");
-		Integer age    = Integer.parseInt(request.getParameter("age"));
+		String age    = request.getParameter("age");
 		String gender =  request.getParameter("gender").toUpperCase();
 		String mobile = request.getParameter("mobile");
 		String email   = request.getParameter("email");
@@ -71,13 +71,14 @@ public class UserRestController {
 		User user = new User();
 		
 		
-		if(userValidator.OnlyNumeric(mobile)) {
+		if(!userValidator.ValidateInformation(mobile, email, age, gender)) {
 			//@formatter:off
-			if(!userInfoService.isEmailExist(email) ||
-			   !userInfoService.isMobileExist(Integer.parseInt(mobile))) 
+			// check if there is any duplication in database
+			if(!userInfoService.isEmailExist(email) &
+			   !userInfoService.isMobileExist(mobile)) 
 			{
 				user.setName(name);
-				user.setAge(age);
+				user.setAge(Integer.parseInt(age));
 				user.setGender(GENDER.valueOf(gender));
 				user.setMobile(Integer.parseInt(mobile));
 				user.setEmail(email);
@@ -92,7 +93,7 @@ public class UserRestController {
 		}
 		
 
-		return "Input only numbers";
+		return userValidator.getLastMessage();
 
 	}
 
