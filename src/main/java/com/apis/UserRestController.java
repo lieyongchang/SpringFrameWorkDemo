@@ -46,28 +46,53 @@ public class UserRestController {
 	@RequestMapping(value = "/yc")
 	@ResponseBody
 	public String createServlet(HttpServletRequest request) {
+
+		UserValidator userValidator = new UserValidator();
+
 		// fetcch the dats
 		//@formatter:off
 		String name    = request.getParameter("name");
 		Integer age    = Integer.parseInt(request.getParameter("age"));
 		String gender =  request.getParameter("gender").toUpperCase();
-		Integer mobile = Integer.parseInt(request.getParameter("mobile"));
+		String mobile = request.getParameter("mobile");
 		String email   = request.getParameter("email");
 		String message = request.getParameter("message");
 
+		
+//		System.out.println("name: " + name);
+//		System.out.println("age: " + age);
+//		System.out.println("gender: " + gender);
+//		System.out.println("mobile: " + mobile);
+//		System.out.println("email: " + email);
+//		System.out.println("message: " + message);
+		
+		
 		// ini my user, with values fetch from servlet
 		User user = new User();
-		user.setName(name);
-		user.setAge(age);
-		user.setGender(GENDER.valueOf(gender));
-		user.setMobile(mobile);
-		user.setEmail(email);
-		user.setMessage(message);
 		
-		UserValidator userValidator = new UserValidator();
-		return userValidator.validateServletRequest(user, userRepository, userInfoService);
+		
+		if(userValidator.OnlyNumeric(mobile)) {
+			//@formatter:off
+			if(!userInfoService.isEmailExist(email) ||
+			   !userInfoService.isMobileExist(Integer.parseInt(mobile))) 
+			{
+				user.setName(name);
+				user.setAge(age);
+				user.setGender(GENDER.valueOf(gender));
+				user.setMobile(Integer.parseInt(mobile));
+				user.setEmail(email);
+				user.setMessage(message);
+				
+				userRepository.save(user);
+				return "Success";
+			}
+			else {
+				return "Duplication of email/ Mobile number";
+			}
+		}
+		
 
-		
+		return "Input only numbers";
 
 	}
 

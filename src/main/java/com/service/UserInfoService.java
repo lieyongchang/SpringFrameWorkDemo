@@ -126,6 +126,7 @@ public class UserInfoService {
 	 * @param email
 	 */
 	public boolean isMobileExist(Integer mobile) {
+
 		String sql = "SELECT count(*) FROM user WHERE mobile=?";
 		int count = jdbcTemplate.queryForObject(sql, new Object[] { mobile }, Integer.class);
 		return count > 0;

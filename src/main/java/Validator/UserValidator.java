@@ -1,5 +1,7 @@
 package Validator;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -57,6 +59,22 @@ public class UserValidator implements Validator {
 			userRepository.save(user);
 			return "register_success";
 		}
+	}
+	
+	// return true if input in numeric
+	public boolean OnlyNumeric(String input) {
+		if (StringUtils.isNumeric(input)) {
+			return true;
+		}
+		return false;
+	}
+	
+	// return true if email not valid
+	public boolean CheckEmailValid(String email) {
+		if (!EmailValidator.getInstance().isValid(email)) {
+			return true;
+		}
+		return false;
 	}
 
 }
